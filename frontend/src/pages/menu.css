@@ -1,0 +1,26 @@
+:root {
+  --paper: #faf7f2;
+  --ink: #1f2937;
+  --accent: #0d3b2e;
+}
+
+.menu-page { color: var(--ink); background:#ffffff; }
+.menu-hero {
+  background: linear-gradient(#0d3b2eaa,#0d3b2eaa), url('https://images.unsplash.com/photo-1461988625982-7e46a099bf4f?q=80&w=1600&auto=format&fit=crop') center/cover;
+  color:#eafaf2;
+}
+.menu-hero__inner { max-width: 900px; margin: 0 auto; padding: 4rem 1rem; text-align: center; }
+.menu-hero h1 { margin:0 0 .5rem; font-size: clamp(2rem, 5vw, 3rem); }
+.menu-hero p { margin:0 0 1rem; opacity:.95 }
+.btn--light { background:#ffffff; color: var(--accent); border-radius:999px; padding:.6rem 1rem; text-decoration:none; display:inline-block; }
+
+.menu-wrapper { max-width: 900px; margin: 2rem auto; padding: 0 1rem; display:grid; gap:1.5rem; }
+.menu-section { background: var(--paper); border: 1px solid #e7e1d6; border-radius:12px; padding: 1rem 1.25rem; box-shadow: 0 1px 0 #eee; }
+.menu-section h2 { margin:.25rem 0 1rem; color: var(--accent); letter-spacing:.3px; }
+.menu-section ul { list-style:none; margin:0; padding:0; display:grid; gap:.6rem; }
+.menu-section li { display:grid; grid-template-columns: 1fr auto auto; column-gap:.5rem; align-items:end; }
+.menu-section .dots { color:#c9c5bd; letter-spacing:2px; line-height: 1; overflow:hidden; white-space:nowrap; }
+.menu-section .price { font-weight: 600; }
+
+.menu-footer { text-align:center; padding: 2rem 1rem; color:#6b7280; }
+
