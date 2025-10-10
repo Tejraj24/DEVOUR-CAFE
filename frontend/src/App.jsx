@@ -1,22 +1,37 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import './App.css'
 import heroImage from './assets/hero-fallback.jpg'
 import coffeePour from './assets/coffee-pour.jpg'
 import pastries from './assets/pastries.jpg'
 import cafeInterior from './assets/cafe-interior.jpg'
+import GalleryCarousel from './components/GalleryCarousel'
 
 function App() {
-  const [galleryIndex, setGalleryIndex] = useState(0);
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
-  const [formStatus, setFormStatus] = useState({ type: 'idle', message: '' });
+  const [isHeroPlaying, setIsHeroPlaying] = useState(true);
+  const [reserveForm, setReserveForm] = useState({ name: '', email: '', phone: '', date: '', time: '', guests: 2, notes: '' });
+  const [reserveStatus, setReserveStatus] = useState({ type: 'idle', message: '' });
   const galleryImages = [
-    coffeePour,
-    pastries,
-    cafeInterior,
-    heroImage,
+    'https://static.spotapps.co/spots/93/bb66438d1f45658a8b54d34e974cce/full',
+    'https://static.spotapps.co/spots/d3/c117eae3bc4e608516401915898960/full',
+    'https://static.spotapps.co/spots/74/43764d75e14b8591ac410f76ebe8cd/full',
+    'https://static.spotapps.co/spots/5b/143212f9f142d8aa04a29c2d02f0be/full',
+    'https://static.spotapps.co/spots/be/9cf60df1dd42b288b8da725cd7f3bc/full',
+    'https://static.spotapps.co/spots/4a/a5d2432dcb430882e5c900d543a544/full',
+    'https://static.spotapps.co/spots/cd/9ed6f109ac417d963c4fa5b2bb7f33/full',
+    'https://static.spotapps.co/spots/bd/d3df23a43346959e3609eba97ee003/full',
+    'https://static.spotapps.co/spots/3b/994184c5124af5ae32c3ecfbe3b192/full',
+    'https://static.spotapps.co/spots/9a/a375030491497caa256a7eeb80c211/full',
+    'https://static.spotapps.co/spots/2d/4d4c3ca6ec4c48b12754f8074fc374/full',
+    'https://static.spotapps.co/spots/bc/6a087f9afb4a3d916be5d750f06894/full',
   ];
-  const nextImage = () => setGalleryIndex((i) => (i + 1) % galleryImages.length);
-  const prevImage = () => setGalleryIndex((i) => (i - 1 + galleryImages.length) % galleryImages.length);
+
+  // Control hero video
+  useEffect(() => {
+    const video = document.querySelector('#heroVideo');
+    if (!video) return;
+    if (isHeroPlaying) video.play?.(); else video.pause?.();
+  }, [isHeroPlaying]);
 
   // Scroll reveal animations
   useEffect(() => {
@@ -33,77 +48,78 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  const onChange = (e) => {
+  const onReserveChange = (e) => {
     const { name, value } = e.target;
-    setForm((f) => ({ ...f, [name]: value }));
+    setReserveForm((f) => ({ ...f, [name]: value }));
   };
 
-  const onSubmit = async (e) => {
+  const onReserveSubmit = async (e) => {
     e.preventDefault();
-    setFormStatus({ type: 'loading', message: 'Sending…' });
-    const { name, email, message } = form;
-    if (!name || !email || !message) {
-      setFormStatus({ type: 'error', message: 'Please fill name, email and message.' });
+    setReserveStatus({ type: 'loading', message: 'Submitting…' });
+    const { name, phone, date, time, guests } = reserveForm;
+    if (!name || !phone || !date || !time || !guests) {
+      setReserveStatus({ type: 'error', message: 'Please fill name, phone, date, time and guests.' });
       return;
     }
     try {
-      const res = await fetch('http://localhost:5000/api/contact', {
+      const res = await fetch('/api/reservations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...reserveForm, guests: Number(reserveForm.guests) }),
       });
-      if (!res.ok) throw new Error('Failed to send');
-      setFormStatus({ type: 'success', message: 'Thanks! We will get back to you shortly.' });
-      setForm({ name: '', email: '', subject: '', message: '' });
+      if (!res.ok) throw new Error('Failed to submit reservation');
+      setReserveStatus({ type: 'success', message: 'Reservation request sent. We will confirm shortly.' });
+      setReserveForm({ name: '', email: '', phone: '', date: '', time: '', guests: 2, notes: '' });
     } catch (err) {
-      setFormStatus({ type: 'error', message: 'Could not send message. Please try again.' });
+      setReserveStatus({ type: 'error', message: 'Could not submit reservation. Please try again.' });
     }
   };
+
+  // Contact form moved to /contact page; related state and handlers removed
 
   return (
     <div className="page">
       <header className="hero">
         <div className="hero__video">
-          <video autoPlay muted loop playsInline preload="auto" poster={heroImage} aria-label="Cafe hero background video">
+          <video id="heroVideo" autoPlay={isHeroPlaying} muted loop playsInline preload="auto" poster={heroImage} aria-label="Cafe hero background video">
             <source src="https://static.spotapps.co/website_videos/Founders%20Coffee%20Edited%20Video_Vimeo720p30.mp4" type="video/mp4" />
           </video>
         </div>
         <div className="hero__overlay"></div>
         <div className="hero__inner container">
+          <button className="hero__play" aria-label={isHeroPlaying ? 'Pause background video' : 'Play background video'} onClick={() => setIsHeroPlaying(p => !p)}>
+            {isHeroPlaying ? '❚❚' : '▶'}
+          </button>
           <nav className="hero__nav">
             <div className="brand">Devour Cafe</div>
             <ul>
               <li><a href="#catering">Catering</a></li>
               <li><a href="#about">About</a></li>
-              <li><a href="#visit">Visit</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="/menu">Menu</a></li>
+              <li><Link to="/visit">Visit</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/menu">Menu</Link></li>
             </ul>
           </nav>
           <div className="hero__content">
             <h1 className="hero__headline">Visit us at 123 Forest Path, Greenway</h1>
             <div className="hero__cta">
-              <a className="btn btn--primary" href="#visit">Visit us</a>
+              <Link className="btn btn--primary" to="/visit">Visit us</Link>
             </div>
           </div>
         </div>
       </header>
 
       <main>
-        {/* Removed Online Order section */}
 
         <section
           id="catering"
-          className="section section--catering section--bg"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url(${cafeInterior})`,
-          }}
+          className="section section--catering"
         >
           <div className="container">
             <h2 className="section__title">Catering</h2>
             <p className="section__lead">Leave The Cooking To Us</p>
             <p>Effortless catering, impeccable results. Let us handle the details, so you can enjoy the occasion to the fullest.</p>
-            <a className="btn btn--primary" href="#contact">Catering</a>
+            <Link className="btn btn--primary" to="/contact">Contact for Catering</Link>
           </div>
         </section>
 
@@ -111,93 +127,21 @@ function App() {
           id="about"
           className="section section--about section--bg reveal"
           style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url(${pastries})`,
+            backgroundImage: `linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=1600&q=80), url(https://picsum.photos/1600/900?blur=1)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
           }}
         >
           <div className="container">
             <h2 className="section__title">About us</h2>
             <h3>Devour Cafe</h3>
             <p>Devour Cafe is locally owned and locally focused, offering handcrafted beverages and food every day. Featuring friendly service and natural ambience, Devour Cafe is the perfect space for coffee, meet-ups, and co-working.</p>
-            <a className="btn btn--primary" href="#story">Read more about us</a>
           </div>
         </section>
 
-        {/* Visit Us */}
-        <section id="visit" className="section section--visit reveal">
-          <div className="container">
-            <h2 className="section__title">Visit us</h2>
-            <div className="visit">
-              <div className="map-wrapper" aria-label="Map to Devour Cafe">
-                <iframe
-                  title="Devour Cafe Location"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=77.2000%2C28.6000%2C77.2500%2C28.6500&layer=mapnik&marker=28.6250%2C77.2250"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-              <div className="visit__details">
-                <h3>Address</h3>
-                <p>123 Forest Path, Greenway</p>
-                <h3>Hours</h3>
-                <p>Sun–Sat · 6:00 AM – 6:00 PM</p>
-                <h3>Contact</h3>
-                <p><a href="#contact">Send us a message</a></p>
-                <p><a target="_blank" rel="noreferrer" href="https://www.openstreetmap.org/?mlat=28.6250&mlon=77.2250#map=15/28.6250/77.2250">Get directions</a></p>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Visit section moved to dedicated /visit page */}
 
-        {/* Menu Highlights */}
-        <section className="section section--menu reveal">
-          <div className="container">
-            <h2 className="section__title">Menu highlights</h2>
-            <div className="menu">
-              <article className="card">
-                <img src={coffeePour} alt="Signature Coffee" />
-                <div className="card__body">
-                  <h3>Signature Coffee</h3>
-                  <p>Rich, smooth, and handcrafted. Our most loved pour.</p>
-                </div>
-              </article>
-              <article className="card">
-                <img src={pastries} alt="Fresh Pastries" />
-                <div className="card__body">
-                  <h3>Fresh Pastries</h3>
-                  <p>Daily baked croissants, muffins, and artisan treats.</p>
-                </div>
-              </article>
-              <article className="card">
-                <img src={cafeInterior} alt="Brunch Specials" />
-                <div className="card__body">
-                  <h3>Brunch Specials</h3>
-                  <p>Seasonal plates crafted with local ingredients.</p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section className="section section--gallery reveal">
-          <div className="container">
-            <h2 className="section__title">Our Gallery</h2>
-            <div className="gallery">
-              <div className="gallery__frame">
-                <img className="gallery__img" src={galleryImages[galleryIndex]} alt={`Gallery image ${galleryIndex + 1}`} />
-                <div className="gallery__controls">
-                  <button className="gallery__btn" onClick={prevImage} aria-label="Previous image">‹</button>
-                  <span className="gallery__dots">
-                    {galleryImages.map((_, i) => (
-                      <span key={i} className={i === galleryIndex ? 'dot dot--active' : 'dot'} onClick={() => setGalleryIndex(i)} />
-                    ))}
-                  </span>
-                  <button className="gallery__btn" onClick={nextImage} aria-label="Next image">›</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
+        {/* Reviews above gallery to match arrangement */}
         <section className="section section--reviews reveal">
           <div className="container">
             <h2 className="section__title">Reviews</h2>
@@ -212,58 +156,82 @@ function App() {
                 <h5>five star review by Alex K:</h5>
                 <blockquote>If you had to choose only one place to get the best coffee & breakfast it would be ONLY here! Don't even look around, tastes are heavenly delicious! Vibe and seating area feels like your own home, Music and flowers are calming and relaxing.</blockquote>
               </div>
+              <div className="review">
+                <h4>Review by - Google</h4>
+                <h5>five star review by Priya S:</h5>
+                <blockquote>The ambiance is beautiful with lots of greenery, and the cappuccino was perfect. A lovely spot to relax and work.</blockquote>
+              </div>
             </div>
           </div>
         </section>
 
-        <section id="contact" className="section section--contact reveal">
+        {/* Gallery below reviews */}
+        <section className="reveal">
           <div className="container">
-            <h2 className="section__title">Contact us</h2>
+            <h2 className="section__title">Our Gallery</h2>
+          </div>
+          <GalleryCarousel images={galleryImages} />
+        </section>
+
+        {/* Reserve a Table */}
+        <section id="reserve" className="section section--contact reveal">
+          <div className="container">
+            <h2 className="section__title">Reserve a table</h2>
             <div className="grid grid--2 contact-grid">
-              <form className="contact-form" onSubmit={onSubmit}>
+              <form className="contact-form" onSubmit={onReserveSubmit}>
                 <div className="grid">
                   <label>
                     <span>Name</span>
-                    <input name="name" value={form.name} onChange={onChange} placeholder="Your name" required />
+                    <input name="name" value={reserveForm.name} onChange={onReserveChange} placeholder="Your name" required />
                   </label>
                   <label>
-                    <span>Email</span>
-                    <input type="email" name="email" value={form.email} onChange={onChange} placeholder="you@example.com" required />
+                    <span>Phone</span>
+                    <input name="phone" value={reserveForm.phone} onChange={onReserveChange} placeholder="Your phone" required />
+                  </label>
+                </div>
+                <div className="grid">
+                  <label>
+                    <span>Email (optional)</span>
+                    <input type="email" name="email" value={reserveForm.email} onChange={onReserveChange} placeholder="you@example.com" />
+                  </label>
+                  <label>
+                    <span>Guests</span>
+                    <input type="number" min="1" max="12" name="guests" value={reserveForm.guests} onChange={onReserveChange} />
+                  </label>
+                </div>
+                <div className="grid">
+                  <label>
+                    <span>Date</span>
+                    <input type="date" name="date" value={reserveForm.date} onChange={onReserveChange} required />
+                  </label>
+                  <label>
+                    <span>Time</span>
+                    <input type="time" name="time" value={reserveForm.time} onChange={onReserveChange} required />
                   </label>
                 </div>
                 <label>
-                  <span>Subject</span>
-                  <input name="subject" value={form.subject} onChange={onChange} placeholder="How can we help?" />
+                  <span>Notes</span>
+                  <textarea name="notes" rows="3" value={reserveForm.notes} onChange={onReserveChange} placeholder="Any requests or occasion?" />
                 </label>
-                <label>
-                  <span>Message</span>
-                  <textarea name="message" rows="5" value={form.message} onChange={onChange} placeholder="Write your message..." required />
-                </label>
-                <button className="btn btn--primary" disabled={formStatus.type === 'loading'}>
-                  {formStatus.type === 'loading' ? 'Sending…' : 'Send message'}
+                <button className="btn btn--primary" disabled={reserveStatus.type === 'loading'}>
+                  {reserveStatus.type === 'loading' ? 'Submitting…' : 'Send reservation'}
                 </button>
-                {formStatus.type !== 'idle' && (
-                  <p className={`form-status ${formStatus.type}`}>{formStatus.message}</p>
+                {reserveStatus.type !== 'idle' && (
+                  <p className={`form-status ${reserveStatus.type}`}>{reserveStatus.message}</p>
                 )}
               </form>
               <div className="contact-info">
                 <div className="hours">
-                  <h3>Hours</h3>
-                  <p>Sun, Mon, Tue, Wed, Thur, Fri, Sat</p>
-                  <p>6:00 AM - 6:00 PM</p>
-                </div>
-                <div className="location">
-                  <h3>Find us on...</h3>
-                  <div className="social-links">
-                    <a href="#" aria-label="Facebook page">Facebook</a>
-                    <a href="#" aria-label="Instagram page">Instagram</a>
-                    <a href="#" aria-label="Google page">Google</a>
-                  </div>
+                  <h3>We’ll confirm your reservation</h3>
+                  <p>Requests are sent to our team at <strong>tejraj487@gmail.com</strong> and <strong>9929059003</strong>.</p>
+                  <p>We usually confirm within minutes during open hours.</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Contact section moved to dedicated /contact page */}
       </main>
 
       <footer className="footer">
@@ -273,11 +241,9 @@ function App() {
             <p>Where nature meets flavor in every cup. Experience the art of exceptional coffee.</p>
           </div>
           <ul className="footer__links">
-            <li><a href="#catering">Catering</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#visit">Visit</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="/menu">Menu</a></li>
+            <li><Link to="/visit">Visit</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
           </ul>
         </div>
         <div className="footer__bar">© {new Date().getFullYear()} Devour Cafe. All rights reserved.</div>
