@@ -9,8 +9,6 @@ import GalleryCarousel from './components/GalleryCarousel'
 
 function App() {
   const [isHeroPlaying, setIsHeroPlaying] = useState(true);
-  const [reserveForm, setReserveForm] = useState({ name: '', email: '', phone: '', date: '', time: '', guests: 2, notes: '' });
-  const [reserveStatus, setReserveStatus] = useState({ type: 'idle', message: '' });
   const galleryImages = [
     'https://static.spotapps.co/spots/93/bb66438d1f45658a8b54d34e974cce/full',
     'https://static.spotapps.co/spots/d3/c117eae3bc4e608516401915898960/full',
@@ -48,32 +46,7 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  const onReserveChange = (e) => {
-    const { name, value } = e.target;
-    setReserveForm((f) => ({ ...f, [name]: value }));
-  };
-
-  const onReserveSubmit = async (e) => {
-    e.preventDefault();
-    setReserveStatus({ type: 'loading', message: 'Submitting…' });
-    const { name, phone, date, time, guests } = reserveForm;
-    if (!name || !phone || !date || !time || !guests) {
-      setReserveStatus({ type: 'error', message: 'Please fill name, phone, date, time and guests.' });
-      return;
-    }
-    try {
-      const res = await fetch('/api/reservations', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...reserveForm, guests: Number(reserveForm.guests) }),
-      });
-      if (!res.ok) throw new Error('Failed to submit reservation');
-      setReserveStatus({ type: 'success', message: 'Reservation request sent. We will confirm shortly.' });
-      setReserveForm({ name: '', email: '', phone: '', date: '', time: '', guests: 2, notes: '' });
-    } catch (err) {
-      setReserveStatus({ type: 'error', message: 'Could not submit reservation. Please try again.' });
-    }
-  };
+  
 
   // Contact form moved to /contact page; related state and handlers removed
 
@@ -97,11 +70,12 @@ function App() {
               <li><a href="#about">About</a></li>
               <li><Link to="/visit">Visit</Link></li>
               <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/reserve">Reserve</Link></li>
               <li><Link to="/menu">Menu</Link></li>
             </ul>
           </nav>
           <div className="hero__content">
-            <h1 className="hero__headline">Visit us at 123 Forest Path, Greenway</h1>
+            <h1 className="hero__headline">Visit us Near Rtech Mall, Jagtpura</h1>
             <div className="hero__cta">
               <Link className="btn btn--primary" to="/visit">Visit us</Link>
             </div>
@@ -142,6 +116,14 @@ function App() {
         {/* Visit section moved to dedicated /visit page */}
 
         {/* Reviews above gallery to match arrangement */}
+        <section className="reveal">
+          <div className="container">
+            <h2 className="section__title">Our Gallery</h2>
+          </div>
+          <GalleryCarousel images={galleryImages} />
+        </section>
+
+        {/* Gallery below reviews */}
         <section className="section section--reviews reveal">
           <div className="container">
             <h2 className="section__title">Reviews</h2>
@@ -165,71 +147,7 @@ function App() {
           </div>
         </section>
 
-        {/* Gallery below reviews */}
-        <section className="reveal">
-          <div className="container">
-            <h2 className="section__title">Our Gallery</h2>
-          </div>
-          <GalleryCarousel images={galleryImages} />
-        </section>
-
-        {/* Reserve a Table */}
-        <section id="reserve" className="section section--contact reveal">
-          <div className="container">
-            <h2 className="section__title">Reserve a table</h2>
-            <div className="grid grid--2 contact-grid">
-              <form className="contact-form" onSubmit={onReserveSubmit}>
-                <div className="grid">
-                  <label>
-                    <span>Name</span>
-                    <input name="name" value={reserveForm.name} onChange={onReserveChange} placeholder="Your name" required />
-                  </label>
-                  <label>
-                    <span>Phone</span>
-                    <input name="phone" value={reserveForm.phone} onChange={onReserveChange} placeholder="Your phone" required />
-                  </label>
-                </div>
-                <div className="grid">
-                  <label>
-                    <span>Email (optional)</span>
-                    <input type="email" name="email" value={reserveForm.email} onChange={onReserveChange} placeholder="you@example.com" />
-                  </label>
-                  <label>
-                    <span>Guests</span>
-                    <input type="number" min="1" max="12" name="guests" value={reserveForm.guests} onChange={onReserveChange} />
-                  </label>
-                </div>
-                <div className="grid">
-                  <label>
-                    <span>Date</span>
-                    <input type="date" name="date" value={reserveForm.date} onChange={onReserveChange} required />
-                  </label>
-                  <label>
-                    <span>Time</span>
-                    <input type="time" name="time" value={reserveForm.time} onChange={onReserveChange} required />
-                  </label>
-                </div>
-                <label>
-                  <span>Notes</span>
-                  <textarea name="notes" rows="3" value={reserveForm.notes} onChange={onReserveChange} placeholder="Any requests or occasion?" />
-                </label>
-                <button className="btn btn--primary" disabled={reserveStatus.type === 'loading'}>
-                  {reserveStatus.type === 'loading' ? 'Submitting…' : 'Send reservation'}
-                </button>
-                {reserveStatus.type !== 'idle' && (
-                  <p className={`form-status ${reserveStatus.type}`}>{reserveStatus.message}</p>
-                )}
-              </form>
-              <div className="contact-info">
-                <div className="hours">
-                  <h3>We’ll confirm your reservation</h3>
-                  <p>Requests are sent to our team at <strong>tejraj487@gmail.com</strong> and <strong>9929059003</strong>.</p>
-                  <p>We usually confirm within minutes during open hours.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Reserve section moved to /reserve page */}
 
         {/* Contact section moved to dedicated /contact page */}
       </main>

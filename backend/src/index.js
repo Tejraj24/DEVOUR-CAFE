@@ -5,11 +5,6 @@ const path = require('path');
 const fs = require('fs');
 let nodemailer = null;
 try { nodemailer = require('nodemailer'); } catch (e) { console.warn('nodemailer not installed; using mock mail transport'); }
-// Optional database libs
-let mongoose = null;
-let { MongoClient } = {};
-try { mongoose = require('mongoose'); } catch {}
-try { ({ MongoClient } = require('mongodb')); } catch {}
 
 dotenv.config();
 
@@ -50,7 +45,7 @@ if (nodemailer) {
 }
 
 app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok', service: 'devour-cafe-backend', db: process.env.MONGODB_URI ? (global.__dbConnected ? 'connected' : 'not_connected') : 'disabled' });
+  res.json({ status: 'ok', service: 'devour-cafe-backend' });
 });
 
 app.post('/api/contact', (req, res) => {
@@ -101,15 +96,7 @@ app.post('/api/reservations', async (req, res) => {
     }
 
     // Persist reservation if DB is connected
-    try {
-      if (global.__ReservationModel) {
-        await global.__ReservationModel.create({ name, email, phone, date, time, guests, notes, createdAt: new Date() });
-      } else if (global.__mongoDb) {
-        await global.__mongoDb.collection('reservations').insertOne({ name, email, phone, date, time, guests, notes, createdAt: new Date() });
-      }
-    } catch (dbErr) {
-      console.warn('Reservation saved to email only (DB save failed):', dbErr?.message);
-    }
+    // DB storage removed; email notification only
 
     return res.status(201).json({ ok: true });
   } catch (err) {
@@ -129,41 +116,7 @@ app.post('/api/reservations', async (req, res) => {
     });
   }
 
-// Start server and connect DB if configured
-app.listen(PORT, async () => {
+// Start server (no database)
+app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);
-  if (!process.env.MONGODB_URI) return;
-
-  const uri = process.env.MONGODB_URI;
-  try {
-    if (mongoose) {
-      await mongoose.connect(uri, { dbName: process.env.MONGODB_DB || 'devour' });
-      global.__dbConnected = true;
-      console.log('[DB] Connected with mongoose');
-      // Define Reservation model once
-      const ReservationSchema = new mongoose.Schema({
-        name: String,
-        email: String,
-        phone: String,
-        date: String,
-        time: String,
-        guests: Number,
-        notes: String,
-        createdAt: { type: Date, default: Date.now },
-      });
-      global.__ReservationModel = mongoose.models.Reservation || mongoose.model('Reservation', ReservationSchema);
-    } else if (MongoClient) {
-      const client = new MongoClient(uri, { serverSelectionTimeoutMS: 8000 });
-      await client.connect();
-      global.__dbConnected = true;
-      global.__mongoClient = client;
-      global.__mongoDb = client.db(process.env.MONGODB_DB || 'devour');
-      console.log('[DB] Connected with mongodb driver');
-    } else {
-      console.warn('[DB] No DB library installed (mongoose/mongodb). Skipping DB connection.');
-    }
-  } catch (dbErr) {
-    global.__dbConnected = false;
-    console.error('[DB] Connection failed:', dbErr?.message);
-  }
 });
