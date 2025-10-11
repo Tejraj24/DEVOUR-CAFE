@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import emailjs from '@emailjs/browser'
 import './contact.css'
 
 export default function ContactPage() {
@@ -19,15 +20,29 @@ export default function ContactPage() {
       return
     }
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      if (!res.ok) throw new Error('Failed to send')
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID_CONTACT
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS env vars missing')
+      }
+
+      await emailjs.send(
+        "service_dqm46dj",
+        "template_ht2hg5c",
+        {
+          from_name: form.name,
+          from_email: form.email,
+          subject: form.subject || 'New contact message',
+          message: form.message,
+        },
+        "31emgPSiGdx9ECKEr"
+      )
       setStatus({ type: 'success', message: 'Thanks! We will get back to you shortly.' })
       setForm({ name: '', email: '', subject: '', message: '' })
     } catch (err) {
+      console.error('EmailJS contact error:', err)
       setStatus({ type: 'error', message: 'Could not send message. Please try again.' })
     }
   }

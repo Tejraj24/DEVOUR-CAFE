@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import emailjs from '@emailjs/browser'
 import { Link } from 'react-router-dom'
 
 function ReservationPage() {
@@ -19,15 +20,21 @@ function ReservationPage() {
       return
     }
     try {
-      const res = await fetch('/api/reservations', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, guests: Number(form.guests) }),
-      })
-      if (!res.ok) throw new Error('Failed to submit reservation')
+      await emailjs.send(
+        "service_dqm46dj",
+        "template_ht2hg5c",
+        {
+          from_name: form.name,
+          from_email: form.email || '-',
+          subject: `Reservation request for ${form.date} at ${form.time} (${String(form.guests)} guests)`,
+          message: `Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email || '-'}\nDate: ${form.date}\nTime: ${form.time}\nGuests: ${String(form.guests)}\nNotes: ${form.notes || '-'}`,
+        },
+        "31emgPSiGdx9ECKEr"
+      )
       setStatus({ type: 'success', message: 'Reservation request sent. We will confirm shortly.' })
       setForm({ name: '', email: '', phone: '', date: '', time: '', guests: 2, notes: '' })
     } catch (err) {
+      console.error('EmailJS reservation error:', err)
       setStatus({ type: 'error', message: 'Could not submit reservation. Please try again.' })
     }
   }
