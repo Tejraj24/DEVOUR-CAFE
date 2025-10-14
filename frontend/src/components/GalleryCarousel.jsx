@@ -15,14 +15,29 @@ export default function GalleryCarousel({ images = [], autoPlay = true, interval
   const [index, setIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const total = images.length;
+
+  // Detect mobile devices
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Adjust interval for mobile devices
+  const mobileInterval = isMobile ? 2000 : interval; // 2 seconds on mobile, 3 seconds on desktop
 
   const goTo = (i) => setIndex((i + total) % total);
   const next = () => goTo(index + 1);
   const prev = () => goTo(index - 1);
 
   // Only use discrete interval mode when not in continuous marquee
-  useInterval(() => { if (!continuous && autoPlay && !isPaused && total > 1) next() }, (!continuous && autoPlay) ? interval : null);
+  useInterval(() => { if (!continuous && autoPlay && !isPaused && total > 1) next() }, (!continuous && autoPlay) ? mobileInterval : null);
 
   const idBase = useMemo(() => `carousel-${Math.random().toString(36).slice(2, 8)}`, []);
   const loopImages = useMemo(() => continuous ? [...images, ...images] : images, [images, continuous]);
