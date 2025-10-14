@@ -51,7 +51,7 @@ export default function ContactPage() {
       <header className="contact-hero">
         <div className="container">
           <h1 className="contact-title">Get in touch</h1>
-          <p className="contact-subtitle">We'd love to hear from you. Reservations, catering, or feedback — say hello.</p>
+          <p className="contact-subtitle">We'd love to hear from you. Questions or feedback — say hello.</p>
         </div>
       </header>
 

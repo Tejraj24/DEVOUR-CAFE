@@ -66,11 +66,9 @@ function App() {
           <nav className="hero__nav">
             <div className="brand">Devour Cafe</div>
             <ul>
-              <li><a href="#catering">Catering</a></li>
               <li><a href="#about">About</a></li>
               <li><Link to="/visit">Visit</Link></li>
               <li><Link to="/contact">Contact</Link></li>
-              <li><Link to="/reserve">Reserve</Link></li>
               <li><Link to="/menu">Menu</Link></li>
             </ul>
           </nav>
@@ -84,18 +82,6 @@ function App() {
       </header>
 
       <main>
-
-        <section
-          id="catering"
-          className="section section--catering"
-        >
-          <div className="container">
-            <h2 className="section__title">Catering</h2>
-            <p className="section__lead">Leave The Cooking To Us</p>
-            <p>Effortless catering, impeccable results. Let us handle the details, so you can enjoy the occasion to the fullest.</p>
-            <Link className="btn btn--primary" to="/contact">Contact for Catering</Link>
-          </div>
-        </section>
 
         <section
           id="about"
