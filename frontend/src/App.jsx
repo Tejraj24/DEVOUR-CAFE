@@ -85,12 +85,7 @@ function App() {
 
         <section
           id="about"
-          className="section section--about section--bg reveal"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=1600&q=80), url(https://picsum.photos/1600/900?blur=1)`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+          className="section section--about reveal"
         >
           <div className="container">
             <h2 className="section__title">About us</h2>
