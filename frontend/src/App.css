@@ -529,18 +529,42 @@ main {
 
 /* Footer */
 .footer { 
-  background: linear-gradient(to bottom, rgba(232, 220, 196, 0.3) 0%, rgba(232, 220, 196, 0.5) 100%);
+  background: linear-gradient(to bottom, rgba(249, 246, 241, 0.8) 0%, rgba(232, 220, 196, 0.4) 100%);
   color: #2c2c2c; 
-  margin-top: 2rem;
-  border-top: 3px double #d4af37;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin-top: -0.5px;
 }
 
 .footer__inner { 
   display: flex; 
-  gap: 2rem; 
+  gap: 3rem; 
   justify-content: space-between; 
-  padding: 3rem 0; 
+  padding: 4rem 0 3rem; 
   align-items: center;
+}
+
+.footer__inner > div:first-child {
+  max-width: 500px;
+}
+
+.footer__inner .brand--invert {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #2c2c2c;
 }
 
 .footer__inner p {
@@ -549,6 +573,7 @@ main {
   margin: 0.5rem 0 0;
   font-size: 0.95rem;
   font-style: italic;
+  line-height: 1.6;
 }
 
 .footer__links { 
@@ -562,27 +587,57 @@ main {
 .footer__links a { 
   color: #2c2c2c; 
   text-decoration: none;
-  transition: color 0.25s ease;
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0;
+  position: relative;
+}
+
+.footer__links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #d4af37;
+  transition: width 0.3s ease;
 }
 
 .footer__links a:hover {
   color: #d4af37;
 }
 
+.footer__links a:hover::after {
+  width: 100%;
+}
+
 .footer__links a svg { width: 14px; height: 14px; }
 
 .footer__bar { 
-  background: rgba(212, 175, 55, 0.1);
+  background: linear-gradient(to bottom, rgba(232, 220, 196, 0.2), rgba(232, 220, 196, 0.35));
   color: #6b6b6b; 
   text-align: center; 
-  padding: 1rem; 
-  font-size: 0.9rem;
+  padding: 1.5rem 1rem; 
+  font-size: 0.85rem;
   font-family: 'Lato', sans-serif;
-  border-top: 1px solid rgba(232, 220, 196, 0.6);
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+.footer__bar::before {
+  content: '✿';
+  display: block;
+  color: #d4af37;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.7;
 }
 
 /* Scroll reveal */
@@ -626,29 +681,13 @@ main {
 
   .hero__nav li a,
   .hero__nav li a[href] {
-    padding: 0.6rem 1.2rem;
+    padding: 0.5rem 1rem;
     font-size: 0.85rem;
-    background: rgba(255, 254, 249, 0.15);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: 0;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-  }
-  
-  .hero__nav li a:hover {
-    background: rgba(212, 175, 55, 0.2);
-    border-color: rgba(212, 175, 55, 0.5);
   }
 
   .brand {
     font-size: 1.5rem;
     text-align: left;
-    font-family: 'Playfair Display', serif;
-    letter-spacing: 0.05em;
-    background: rgba(255, 254, 249, 0.2);
-    padding: 0.5rem 1rem;
-    border-left: 3px solid #d4af37;
-    backdrop-filter: blur(5px);
   }
 
   .hero__content {
@@ -796,15 +835,39 @@ main {
   }
 
   /* Footer */
+  .footer {
+    margin-top: 2rem;
+  }
+  
   .footer__inner {
     flex-direction: column;
     text-align: center;
-    gap: 2rem;
+    gap: 2.5rem;
+    padding: 3rem 0 2rem;
+  }
+  
+  .footer__inner > div:first-child {
+    max-width: 100%;
+  }
+  
+  .footer__inner .brand--invert {
+    font-size: 1.6rem;
   }
 
   .footer__links {
-    flex-direction: column;
-    gap: 1rem;
+    flex-direction: row;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .footer__links a {
+    font-size: 0.9rem;
+  }
+  
+  .footer__bar {
+    padding: 1.2rem 1rem;
+    font-size: 0.8rem;
   }
 
   /* Contact Info */
@@ -814,9 +877,12 @@ main {
   }
 
   /* Background adjustments for mobile */
-  .page::before,
+  .page::before {
+    display: none;
+  }
+  
   .page::after {
-    opacity: 0.5;
+    opacity: 0.3;
   }
 }
 
