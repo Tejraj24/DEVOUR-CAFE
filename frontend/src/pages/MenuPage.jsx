@@ -6,224 +6,287 @@ const sections = [
     title: 'Tea Tasting Menu',
     image: 'https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Cinnamon Tea'],
-      ['Masala Chai'],
-      ['Devour Special Tea'],
-      ['Ginger Tea', 'Fenugreek seeds, ginger, cardamom, rich milk'],
-      ['Special Tea', 'Carom seeds, ginger, cinnamon, rich milk'],
-    ],
-  },
-  {
-    title: 'Coffee Specials',
-    image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1600&auto=format&fit=crop',
-    items: [
-      ['Hazelnut Coffee'],
-      ['Cold Coffee'],
-      ['Classic Frappe'],
-      ['Choco Chip Frappe'],
+      ['Ginger Josh', 'Aromatic blend of spices with black tea and milk'],
+      ['Masala Masti', 'Traditional green tea with saffron, spices, and nuts'],
+      ['Ginger Cinnamon Swag', 'Refreshing black tea with honey and fresh lemon'],
+      ['Tulsi Tantra', 'Holy basil and fresh ginger with black tea'],
     ],
   },
   {
     title: 'Hot Coffee',
     image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Americano'],
-      ['Espresso Shot'],
-      ['Classic Cappuccino'],
-      ['Cafe Latte'],
+      ['Desi Hot Coffee', 'Gaon wali feel, sheher wali style'],
+      ['South Indian Filter Coffee', 'Idli sambhar ke asli soulmate'],
+      ['Espresso Shot', 'Seedha dil pe lagti hai yeh teekhi wali chhoot!'],
+      ['Classic Americano', 'Bilkul straight, no drama'],
+      ['Cafe Latte', 'Doodh bhi, pyaar bhi'],
+      ['Caramel Coffee', 'Thoda meetha, thoda classy'],
+      ['Cappuccino', 'Foam itna ki shaadi ke sapne aa jaayein'],
+      ['Cortado', 'Half-half jaise complicated rishtay']
     ],
   },
   {
     title: 'Cold Coffee',
     image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Iced Latte'],
+      ['Cold Coffee', 'Simple, sweet aur seedha dil mein'],
+      ['Cold Coffee with Ice-Cream', 'Thandi coffee, garam jazbaat'],
+      ['Cold Coffee with Choco Chips', 'Coffee ki shaadi ho gayi dessert se']
     ],
   },
   {
-    title: 'Continental Soup',
+    title: 'Indian Special Soups',
     image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Dubarry Soup'],
-      ['Orange Carrot Soup'],
-      ['Porcini Mushroom'],
-      ['Roasted Tomato Basil Bell Pepper Soup'],
+      ['Adraki Tamatar Shorba', 'Garam garam tomato soup with a zing of adrak — perfect for sukoon bhari shaam'],
+      ['Veg Clear Soup', 'Halke-phulke mood ke liye — light, fresh aur full of flavour']
     ],
   },
   {
-    title: 'Oriental Soup',
+    title: 'Oriental Specials',
     image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Veg Clear Soup'],
-      ['Hot & Sour'],
-      ['Tom Yum'],
-      ['Manchow'],
+      ['Hot & Sour Soup', 'Thoda teekha, thoda khatta — ek dum Indo-Chinese mood! Perfect to warm up your day'],
+      ['Veg Manchow Soup', 'Crunchy noodles ke saath spicy soup ka ultimate combo — full street-style comfort']
     ],
   },
   {
-    title: 'Healthy Salads',
-    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1600&auto=format&fit=crop',
+    title: 'Maggi Specials',
+    image: 'https://images.unsplash.com/photo-1692273212247-f5efb3fc9b87?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFnZ2l8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=700',
     items: [
-      ['Greek Salad', 'Bell pepper, onion, olive, cherry tomato, feta, lettuce in classic Greek dressing'],
-      ['Beetroot Carpaccio', 'Bocconcini, roasted beetroot, salt, pepper, balsamic dressing'],
-      ['Caesar Salad', 'Iceberg, croutons, sun-dried tomato, black olives, parmesan, Caesar dressing'],
-      ['Fruit & Nut Salad', 'Apple, banana, grapes, papaya, pomegranate, honey-yogurt dressing'],
-      ['Avocado Quinoa Salad', 'Avocado, quinoa, onion, tomato, salt, olive oil, pepper dressing'],
-      ['Green Burrata', 'Burrata, cherry tomato, sun-dried tomato, pepper, arugula, balsamic'],
+      ['Classic Masala Maggi', 'Wahi old-school taste… garam, masaledaar aur full nostalgia!'],
+      ['Veggie Loaded Maggi', 'Fresh veggies, full flavour – thoda healthy, thoda tasty!'],
+      ['Cheese Burst Maggi', 'Melty cheese + masala Maggi = swad ka explosion!'],
+      ['Tandoori Tadka Maggi', 'Smoky flavour, spicy twist – ekdum dhaba style!'],
+      ['Peri Peri Maggi', 'Thodi hatke, thodi spicy – perfect for the bold souls!'],
+      ['Butter Garlic Maggi', 'Soft noodles + makhan + lahsun = comfort ka ultimate combo!']
     ],
   },
   {
-    title: 'Pizzas',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1600&auto=format&fit=crop',
+    title: 'Parathas',
+    image: 'https://images.unsplash.com/photo-1683533761804-5fc12be0f684?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGFyYXRoYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=700',
     items: [
-      ['Margherita', 'Tomato, mozzarella, basil'],
-      ['Sweet Emotion', 'Sauteed spinach, caramelized onion, mushroom, mozzarella'],
-      ['Mexican Pizza', 'Bell pepper, onion, jalapeno, paprika chili'],
-      ['Fiery Hot', 'Red pepper, paprika chili, onion, capers'],
-      ['Cilantro Green Onion', 'Zucchini, spring onion, coriander, mozzarella, parmesan sprinkle'],
-      ['Pesto Pizza', 'Basil pesto, English vegetables, black olives, parmesan'],
-      ['Quattro Formaggi', 'Ricotta, mozzarella, parmesan, feta, fried garlic, extra virgin olive oil'],
-      ['BBQ Paneer', 'Paneer in barbecue sauce, onion, homemade sauce'],
-      ['Cheese Burst Pizza', 'Blend of cheeses with arugula leaves'],
-      ['More Than Words', 'Black olives, broccoli, sun-dried tomato, zucchini, onion, feta, mozzarella'],
+      ['Aloo Paratha'],
+      ['Pyaz Paratha'],
+      ['Gobhi Paratha'],
+      ['Besan Pyaz Paratha'],
+      ['Bhujia Paratha'],
+      ['Mix Veg Paratha'],
+      ['Paneer Bhujji Paratha']
     ],
   },
   {
-    title: 'Pasta',
-    image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=1600&auto=format&fit=crop',
+    title: 'Halka Fulka Khana',
+    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Alfredo'],
-      ['Aglio e Olio', 'Chili and garlic in olive oil, spaghetti or penne'],
-      ['Arrabbiata', 'Vegetables in a spicy tomato sauce'],
-      ['Rosy Veg', 'Corn, spinach, mushroom in a creamy tomato sauce'],
-      ['Barbacceca', 'Sliced mushrooms, corn, vegetables sautéed in garlic butter with choice of pasta'],
-      ['Spicy Shiitake Mushroom', 'Shiitake mushrooms and chili in tomato, garlic, olive oil'],
-      ['Pesto', 'Basil pesto, garlic, parmesan in a creamy sauce'],
+      { 
+        group: 'Idli Special',
+        items: [
+          ['Podi Idli'],
+          ['Peri Peri Idli'],
+          ['Fried Idli'],
+          ['Vaghar Idli'],
+          ['Idli Sambhar'],
+        ]
+      },
+      ['Pav Bhaji', 'Buttered bread + veggie mash = happiness smeared generously'],
+      ['Dahi K Shole', 'Yogurt + spice = flavor fireworks!'],
+      ['Rajma Chawal', 'The ultimate comfort cuddle in a plate'],
+      ['Chole Chawal', `When your stomach says, "I want something chole-licious!"`],
+      ['Hara Bhara Kebab', 'Green, mean, and totally bean-credible'],
     ],
   },
   {
-    title: 'Risotto',
-    image: 'https://images.unsplash.com/photo-1476124369491-c4076d0cbe8f?q=80&w=1600&auto=format&fit=crop',
+    title: 'Chaat Corner',
+    image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Mushroom Risotto', 'Mushrooms with onion and garlic in a creamy sauce'],
-      ['Asparagus & Sun-dried Tomato Risotto', 'Asparagus in butter with onion, sun-dried tomatoes, vegetable stock, parmesan'],
-      ['Spicy Shiitake Mushroom Risotto', 'Shiitake mushrooms with onion and garlic in a creamy sauce'],
-      ['Zucchini & Basil Risotto', 'Bell peppers and zucchini stir-fried with basil'],
+      { 
+        group: 'Street Legends',
+        items: [
+          ['Vada Pav', 'Spicy, और थोड़ा Naughty!'],
+          ['Maska Bun', 'Butter का Love Affair'],
+          ['Kachchi Dabeli', 'Mmm… मस्ती Full On!'],
+          ['Cheese Maska Bun', 'Extra Cheese, Extra Kissable ?']
+        ]
+      },
+      { 
+        group: 'Dahi & Pakoda Love',
+        items: [
+          ['Dahi Vada', 'Soft, Spicy, और थोड़ा Sexy'],
+          ['Dal Pakoda', 'Crispy Love In Every Bite'],
+          ['Paneer Pakoda', 'Fried To Perfection, Heart Thief'],
+          ['Mel Jhol Pakoda', 'Saucy, Spicy, Full On Mood']
+        ]
+      },
+      { 
+        group: 'Samosa Affair',
+        items: [
+          ['Samosa Chat with Chole', 'Desi Romance In A Plate']
+        ]
+      }
+    ]
+  },
+    {
+    title: 'Burgers',
+    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1600&auto=format&fit=crop',
+    items: [
+      ['Veg Crispy Burger', 'क्रंच करो , मस्त र!'],
+      ['Veg Onion Burger', 'प्या ज़ की चा ल, Taste धल!'],
+      ['Veg Cheese Slice Burger', 'Cheese ka Hug, Bite ka Thug'],
+      ['Veg Onion & Tomato Burger', 'Classic Combo, Zaika Full On'],
+      ['Veg Tandoori Burger', 'Thoda Tandoor, Full-On Swag'],
+      ['Veg Double Tikki Burger', 'Double Tikki, Double Masti!'],
+      ['Veg Paneer Burger', 'Paneer ka Swag, Mood Ka Tag'],
     ],
   },
   {
-    title: 'Mocktails',
-    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1600&auto=format&fit=crop',
+    title: 'Perfect Roll',
+    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Fresh Lime Soda'],
-      ['Iced Tea', 'Lemon / Peach / Strawberry / Passion Fruit'],
-      ['Blue Lagoon'],
-      ['Virgin Mojito', 'Orange / Strawberry'],
-      ['Mint Mojito'],
-      ['Virgin Pina Colada'],
-      ['Frozen Margarita', 'Strawberry / Kiwi'],
-      ['Fruit Punch'],
-    ],
-  },
-  {
-    title: 'Oriental Starters',
-    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=1600&auto=format&fit=crop',
-    items: [
-      ['Spring Roll'],
-      ['Veg Salt ‘n’ Pepper'],
-      ['Crispy Corn'],
-      ['Veg Manchurian', 'Dry / Gravy'],
-      ['Paneer Chili', 'Dry / Gravy • Cottage cheese with onion, bell pepper, soya, chili garlic, pepper sauce'],
-      ['Chili Mushroom', 'Fried button mushrooms with dark soya and chili sauce'],
-      ['Kung Pao Paneer', 'Fried cottage cheese with oyster, hoisin, dark soya, cashew, chili, bell pepper'],
-      ['Korean Paneer', 'Fried cottage cheese with gochujang, gochugaru, chili paste, sesame seeds'],
+      ['Classic Paneer Wrap', 'पर classic swag, Bite magic!'],
+      ['Veggie Delight Wrap', 'Veggies full tadka, Mood full ध!'],
+      ['Aloo Tikki Wrap', 'Crispy Tikki, Chatpata Zaika'],
+      ['Tandoori Paneer Wrap', 'Tandoor, Full-On Swag'],
+      ['Veg & Noodle Wrap', 'Noodles twist, Zaika lift!'],
     ],
   },
   {
     title: 'Sandwiches',
     image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Vegetable Sandwich', 'Grilled / Normal'],
-      ['Corn & Spinach Sandwich'],
-      ['Coleslaw Sandwich'],
-      ['Pesto Sandwich'],
-      ['Club Sandwich'],
+      ['VEG-ILICIOUS (Vegetable Sandwich)', 'Har bite mein garden party 🌿 — thoda green, thoda queen!'],
+      ['COLESLAW SWAG (Coleslaw Sandwich)', 'Creamy vibes only — coolness ka overdose'],
+      ['CLUB WALA LOVE (Club Sandwich)', '3 layers of temptation — ek khaya, dil gaya!'],
+      ['BOMBAY MAGIC (Bombay Sandwich)', 'Masala, memories & masti — ek bite aur local train miss!'],
+      ['CORN-SPINACH AFFAIR (Corn & Spinach Sandwich)', 'Healthy bhi, hot bhi — bilkul tere jaise'],
+      ['TANDOORI ROMANCE (Tandoori Paneer Sandwich)', 'Desi tadka, firangi touch — dil garden garden ho gaya!'],
     ],
   },
   {
-    title: 'Burgers',
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1600&auto=format&fit=crop',
+    title: 'China Town',
+    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Aloo Tikki Burger'],
-      ['Farmhouse'],
-      ['Mexican'],
-      ['Barbecue Cottage Cheese Burger'],
+      ['ROLL WITH IT (Spring Roll)', 'Outside crisp, andar full romance ❤ — एक bite और ल ल ल!'],
+      ['CRISPY CORN CRUSH', 'मुँह में crunch, ल punch — snack , swag !'],
+      ['MANCHURIAN MOOD', 'spicy, saucy — full Chinese chemistry! (Dry / Gravy)'],
+      ['PANEER CHILLI CHARMER', 'Paneer toh baby, attitude (Dry / Gravy)'],
+      ['CHILLI MUSHROOM MASALA', 'Bold flavour, soft ल — hero , zero calories (almost)!'],
+      ['KUNG PAO PYAAR (Kung Pao Paneer)', 'Kung Fu taste kicks 💥 — प्र knockout punch!'],
+      ['SEOUL-MATE PANEER (Korean Paneer)', 'Sweet + spicy = perfect Jodi! 🇰🇷 — एक bite aur oppa wow!'],
     ],
   },
   {
-    title: 'Thai Curries',
-    image: 'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?q=80&w=1600&auto=format&fit=crop',
+    title: 'Pasta',
+    image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Green Thai Curry', 'Served with rice'],
-      ['Red Thai Curry', 'Served with rice'],
+      ['ALFREDO AFFAIR', 'Creamy vibes, dreamy feels — itna smooth ke ल घल ए!'],
+      ['AGLIO E OLIO ATTITUDE', 'Simple, sexy aur full Italian tashan 🇮🇹 — olive oil bhi blush kare!'],
+      ['ARRABBIATA ANGER MANAGEMENT', 'Thoda tezz, thoda jazba — spice level: ex-boyfriend revenge!'],
+      ['ROSY VEG ROMANCE', 'White + Red = Love Story — pasta bhi filmy nikla!'],
+      ['PESTO PASSION', 'Green, fresh, aur full of life — हर bite – mamma mia!'],
+      ['SPICY SHIITAKE DRAMA', 'मशरूम mast madness taste itna bold, censor board fail!'],
+    ],
+  },
+  {
+    title: 'Mocktails',
+    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1600&auto=format&fit=crop',
+    items: [
+      ['FRESH LIME SWAG (Fresh Lime Soda)'],
+      ['ICED TEA TANTRA (Lemon / Peach / Strawberry / Passion Fruit)'],
+      ['BLUE LAGOON BABE'],
+      ['VIRGIN MOJITO VIBE (Orange / Strawberry)'],
+      ['MINT MOJITO MAGIC'],
+      ['VIRGIN PIÑA COLADA PARADISE'],
+      ['FROZEN MARGARITA MASTI (Strawberry / Kiwi)'],
+      ['FRUIT PUNCH PYAAR'],
+      ['SPICY GUAVA GOSSIP'],
     ],
   },
   {
     title: 'Noodles & Rice',
     image: 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Veg Noodles'],
-      ['Singapore Noodles'],
-      ['Chili Garlic Noodles'],
-      ['Vegetable Rice'],
-      ['Sichuan Rice'],
-      ['Chili Garlic Rice'],
+      ['BBQ BABY CORN DRAMA', 'Smoky, saucy aur full attitude – corn bhi hot ho sakta hai!'],
+      ['VEG NOODLES VIBE', 'Simple nahi, seductive hai – slurp karo, flirt karo!'],
+      ['HAKKA HO JA! (Hakka Noodles)', 'Full toss of taste – street wala swag, five-star wala feel!'],
+      ['SINGAPORE SWING (Singapore Noodles)', 'Ek bite aur tu globe-trotter – spice ka passport ready hai!'],
+      ['CHILLI GARLIC NOODLES', 'Thoda tezz, thoda tease – dil mein garam, mood mein charm!'],
+      ['VEGETABLE RICE RAGA', 'Simple soul food – rice bhi classy lag sakta hai!'],
+      ['SCHEZWAN SIZZLE RICE', 'Laal mirch ka jadoo – har grain mein China Town ka thrill!'],
+      ['CHILLY GARLIC GROOVE', 'Garlic ka glow-up – thoda hot, thoda hypnotic!'],
+      ['KERALA VEG BIRYANI', 'Coconut, curry aur coastal romance – desi heart, global art!'],
+    ],
+  },
+
+  {
+    title: 'Pizzas',
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1600&auto=format&fit=crop',
+    items: [
+      ['MARGHERITA MAGIC', 'Simple, classy aur full Italian crush 🇮🇹 – हर bite  "Mama Mia!"'],
+      ['SWEET EMOTION', 'Cheese ke saath thoda romance – sweet bhi, heat bhi!'],
+      ['MEXICAN MASALA', 'Desi soul, firangi goal – jalapeño jalsa in every slice!'],
+      ['FIERY HOT FANTASY', 'जल – this pizza plays with fire… and feelings!'],
+      ['CILANTRO GREEN ONION', 'Fresh, funky, aur full attitude – herb ka swag level: MAX!'],
+      ['PESTO PASSION', 'Green dreams, creamy schemes – हर bite  "Bellissimo!"'],
+      ['QUATTRO FORMAGGI', '4 cheeses, 1 love story – dil melt, mood set!'],
+      ['BBQ PANEER PARTY', 'Desi grill, videsi thrill – paneer ka bold avatar!'],
+      ['CHEESE BURST BLISS', 'Cheese ka tsunami – mouth full, soul full!'],
+      ['MORE THAN WORDS', 'Soft base, deep feels – itna pyaar pizza mein bhi ho sakta hai!']
     ],
   },
   {
-    title: 'Appetizers',
-    image: 'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?q=80&w=1600&auto=format&fit=crop',
+    title: 'Shakes',
+    image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['French Fries'],
-      ['Peri Peri French Fries'],
-      ['Cheese Peri Peri French Fries'],
-      ['Garlic Bread'],
-      ['Garlic Bread with Cheese'],
-      ['Veggie Croquettes', 'Assorted vegetables with crushed corn, peanuts, chilies, mashed potato; crumb-fried; garlic mayo'],
+      ['VANILLA VIBE', 'Simple, sexy aur evergreen – classic taste, killer grace!'],
+      ['STRAWBERRY SIZZLE', 'Pink wala pyaar – sweet talk in a glass!'],
+      ['BLACK CURRENT BUZZ', 'Berry bold, berry beautiful – thoda fancy, thoda filmy!'],
+      ['DARK CHOCOLATE DESIRE', 'Deep, dark, aur full drama – ek sip aur dil ho gaya blackout!'],
+      ['KITKAT KISS', 'Break bhi mile, taste bhi mile – ek sip aur mood set ho gaya!'],
+      ['OREO OBSESSION', 'Black & white ka perfect love story – dip it, sip it, flip it!'],
+      ['CHOCOLATE CHIP CHARMER ', 'Chocolate rain aur chip storm – sip karo, melt ho jao!'],
+      ['CHOCO HAZELNUT HANGOVER ', 'Ek sip aur mind blown – itna smooth ke guilty feel hi na ho!'],
+      ['BUTTERSCOTCH BABY ', 'Golden vibes, sugar high – cute bhi, kick bhi!'],
+      ['CHOCOLATE-BROWNIE BLISS ', 'Brownie ka bold andaaz – thick, rich & thoda naughty!'],
+      ['NUTELLA NAZAAKAT ', 'Hazelnut ka husn – ek sip aur duniya soft lagne lage!'],
+      ['OREO NUTELLA AFFAIR ', 'Double trouble, triple temptation – yeh toh shake nahi, sin hai!'],
+      ['FERRERO ROCHER FANTASY', 'Luxury in a glass – hazelnut aur chocolate ka royal romance!']
     ],
   },
   {
-    title: 'Small Plates',
-    image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?q=80&w=1600&auto=format&fit=crop',
+    title: 'Chakna',
+    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Tacos', 'Kidney beans, bell peppers, corn, cheese in Mexican sauce; sour cream salsa'],
-      ['Crispy Parmesan Potato Cake', 'Parmesan, avocado, cilantro coulis'],
-      ['Spinach Feta Cigars', 'Spring rolls with spinach and feta; salsa dip'],
-      ['BBQ Baby Corn', 'Butter-fried baby corn in homemade BBQ sauce'],
-      ['Mushroom Arancini Balls', 'Crispy arancini stuffed with mushroom, pesto, cheese'],
-      ['Cranberry Cream Cheese Bruschetta'],
-      ['Harissa Cottage Cheese', 'Cottage cheese marinated with harissa, dukkah, pistachio, olive oil'],
-      ['Quesadilla', 'Bell peppers, corn, kidney beans, Mexican sauce; sour cream salsa'],
-      ['Crostini with Caramelised Onion and Goat Cheese'],
-      ['Avocado Tacos', 'Soft tacos with peri-peri, chili sauce, mango, corn, avocado, salsa'],
-      ['Ginger Pineapple Striker', 'Crumb-fried pineapple fritters stuffed with cheese, green chili, ginger'],
+      ['CHANA JOR GARAM ', 'Tikki-masala vibes – ek bite aur dil ho gaya full dhamaal!'],
+      ['PEANUT MASALA ', 'Crunchy, chatpata aur bilkul bindass – mood bhi masaledaar!'],
+      ['KALA CHANA CHAKHNA ', 'Protein + punch – thoda desi, thoda daring!'],
+      ['SPROUTS WITH MINT SAUCE ', 'Healthy bhi, hatke bhi – ek bite aur feel light aur right!'],
+      ['CHINESE BHEL ', 'Thoda Indo, thoda Chinese – har bite mein fusion ka tadka!'],
+      ['SAUTÉED VEGETABLES ', 'Colorful, crisp aur totally fresh – ek bite aur heart fresh!'],
+      ['CHEESY VEGGIE NACHOS ', 'Cheese ka dhamaal + salsa ka jhatka – ek plate aur party shuru!']
     ],
   },
   {
-    title: 'Main Course',
-    image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1600&auto=format&fit=crop',
+    title: 'Waffles',
+    image: 'https://images.unsplash.com/photo-1613483515012-8879be29b578?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHdhZmZsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=700',
     items: [
-      ['Veg Cannelloni', 'Ricotta and spinach stuffed cannelloni, baked and served'],
-      ['Veg Au Gratin Rotatalini', 'Carrot, mushroom, peas, spinach, bell pepper tossed in olive oil and garlic; baked'],
-      ['Cottage Cheese Paprika (Chunky Stir Sauce)', 'Grilled cottage cheese, bell pepper, zucchini, basil in tangy sauce; served with rice'],
-      ['Veg Lasagne', 'Layered pasta with seasonal vegetables baked with mozzarella'],
-      ['Cottage Cheese Paprika'],
-      ['Cottage Cheese Steak', 'Grilled paneer with spinach, mushroom, herbs, spicy carrot puree'],
-      ['Mushroom Polenta', 'Polenta with sautéed mushrooms, grilled onion, parmesan'],
-      ['Enchilada', 'Soft tortillas stuffed with corn, kidney beans, bell pepper; topped with Mexican sauce and baked'],
-      ['Baked Corn & Spinach Spaghetti', 'Corn and spinach in creamy sauce with spaghetti and garlic bread'],
+      ['RED VELVET RAAZ' , 'Thoda classy, thoda sexy – Har bite ek Valentine vibe!'],
+      ['BROWNIE BLISS' , 'Soft inside, bold outside – ek bite aur love story shuru! ❤'],
+      ['DARK CHOCOLATE DESIRE' , 'Deep, dark aur dangerous – yeh dessert nahi, mood hai!'],
+      ['CHOCOCHIP CHARMER' , 'Chocolate rain, chip storm – bite karo aur smile born!'],
+      ['HOT CHOCOLATE HUG' , 'Ek sip mein comfort, ek sip mein crush – liquid love story!'],
+      ['MILK CHOCOLATE MAGIC' , 'Simple, smooth aur fully mood booster – sweetness ka overdose!'],
+      ['KITKAT CRUNCH' , 'Break bhi, bake bhi – ek crunch aur zindagi set!'],
+      ['OREO OBSESSION' , 'Black & white wala jazba – thoda cookie, thoda naughty!'],
+      ['TRIPLE CHOCOLATE TEMPTATION' , 'Teen guna chocolate, ek hi crime – overdose of delicious sin!'],
+      ['BISCOFF BLISS' , 'Caramel dreams & cinnamon feels – London ka taste, India ka dil!'],
+      ['SIZZLER BROWNIE' , 'Garami bhi, mithaas bhi – hot plate, hotter date!'],
+      ['NUTELLA NIRVANA' , 'Hazelnut ka husn – spread the love, lick the happiness!'],
+      ['HAZELNUT BROWNIE HIGH' , 'Crunchy, gooey aur thoda luxury – yeh brownie nahi, fantasy hai!'],
+      ['SIZZLER BROWNIE WITH ICE CREAM' , 'Heat meets sweet – perfect couple goals dessert!']
     ],
-  },
+  },                                                                                                                                                                                     
 ]
 
 export default function MenuPage() {
@@ -249,6 +312,48 @@ export default function MenuPage() {
               <h2>{sec.title}</h2>
               <ul>
                 {sec.items.map((item) => {
+                  if (item && item.group && Array.isArray(item.items)) {
+                    // Special elegant layout for "Idli Special"
+                    if (item.group === 'Idli Special') {
+                      return (
+                        <li key={item.group} className="item-group idli-special">
+                          <div className="item-name">{item.group}</div>
+                          <ul className="idli-grid">
+                            {item.items.map((sub) => {
+                              const subName = Array.isArray(sub) ? sub[0] : sub
+                              const subDesc = Array.isArray(sub) && sub[1] ? sub[1] : ''
+                              return (
+                                <li key={subName} className="idli-card">
+                                  <div className="idli-card__title">{subName}</div>
+                                  {subDesc ? <div className="idli-card__desc">{subDesc}</div> : null}
+                                </li>
+                              )
+                            })}
+                          </ul>
+                        </li>
+                      )
+                    }
+
+                    // Default group rendering
+                    return (
+                      <li key={item.group} className="item-group">
+                        <div className="item-name">{item.group}</div>
+                        <ul className="group-list">
+                          {item.items.map((sub) => {
+                            const subName = Array.isArray(sub) ? sub[0] : sub
+                            const subDesc = Array.isArray(sub) && sub[1] ? sub[1] : ''
+                            return (
+                              <li key={subName} className="sub-item">
+                                <span className="item-name">{subName}</span>
+                                {subDesc ? <span className="item-desc">{subDesc}</span> : null}
+                              </li>
+                            )
+                          })}
+                        </ul>
+                      </li>
+                    )
+                  }
+  
                   const name = Array.isArray(item) ? item[0] : item
                   const desc = Array.isArray(item) && item[1] ? item[1] : ''
                   return (
