@@ -1,44 +1,254 @@
-:root { --gold: #c8a96a; }
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+  --cream: #f9f6f1;
+  --ivory: #fffef9;
+  --charcoal: #2c2c2c;
+  --gold: #d4af37;
+  --gold-dark: #b8941e;
+  --gold-light: #f4e4bc;
+  --border: #e8dcc4;
+  --text-secondary: #6b6b6b;
+}
 
 .visit-hero {
-  background-size: cover;
-  background-position: center;
-  color: #fff;
-  padding: 96px 0;
+  background: linear-gradient(rgba(44, 44, 44, 0.8), rgba(44, 44, 44, 0.8)), 
+              url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+  color: var(--ivory);
+  padding: 120px 0 80px;
   text-align: center;
   position: relative;
+  font-family: 'Playfair Display', serif;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 .visit-title {
-  font-size: 48px;
+  font-size: 3.5rem;
   font-weight: 700;
-  letter-spacing: .02em;
+  letter-spacing: 0.03em;
+  margin-bottom: 1rem;
+  color: var(--gold);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 1rem;
+}
+
+.visit-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: var(--gold);
 }
 .visit-subtitle {
-  margin-top: .5rem;
-  font-size: 18px;
-  color: rgba(255,255,255,0.9);
+  margin: 1rem auto 2rem;
+  font-size: 1.25rem;
+  color: var(--ivory);
+  max-width: 700px;
+  line-height: 1.6;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
-.section--visit-intro { background: #0f0f0f; color: #e8e8e8; padding: 56px 0; }
+.section--visit-intro { 
+  background: var(--ivory); 
+  color: var(--charcoal); 
+  padding: 80px 0; 
+  position: relative;
+  overflow: hidden;
+}
+
+.section--visit-intro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/rice-paper-3.png');
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
 .visit-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
 }
 .visit-card {
-  background: #141414;
-  border: 1px solid rgba(200,169,106,0.3);
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
 }
-.visit-card h2 { color: var(--gold); margin-top: 0; }
-.visit-card a.btn { margin-top: 8px; display: inline-block; }
 
-.section--map { background: #0b0b0b; padding: 48px 0 80px; }
-.map-embed { border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
-.map-embed iframe { width: 100%; height: 400px; border: 0; }
+.visit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.visit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+}
+.visit-card h2 { 
+  color: var(--charcoal); 
+  margin: 0 0 1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.visit-card h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+}
+.visit-card p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.visit-card a.btn { 
+  margin-top: 1rem; 
+  display: inline-block;
+  background: var(--gold);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 2px solid var(--gold);
+}
+
+.visit-card a.btn:hover {
+  background: transparent;
+  color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+}
+
+.section--map { 
+  background: var(--cream); 
+  padding: 5rem 0; 
+  position: relative;
+}
+
+.section--map::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/rice-paper-3.png');
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.map-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.map-embed { 
+  border-radius: 8px; 
+  overflow: hidden; 
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.map-embed:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.map-embed iframe { 
+  width: 100%; 
+  height: 450px; 
+  border: 0; 
+  display: block;
+}
 
 @media (max-width: 900px) {
-  .visit-grid { grid-template-columns: 1fr; }
+  .visit-hero {
+    padding: 80px 0 60px;
+  }
+  
+  .visit-title {
+    font-size: 2.5rem;
+  }
+  
+  .visit-subtitle {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+  }
+  
+  .visit-grid {
+    grid-template-columns: 1fr;
+    padding: 0 1.5rem;
+  }
+  
+  .map-container {
+    padding: 0 1.5rem;
+  }
+  
+  .map-embed iframe {
+    height: 350px;
+  }
 }
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.visit-card {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.visit-card:nth-child(1) { animation-delay: 0.1s; }
+.visit-card:nth-child(2) { animation-delay: 0.2s; }
+.visit-card:nth-child(3) { animation-delay: 0.3s; }
