@@ -378,20 +378,29 @@ main {
 
 /* Gallery */
 .section--gallery { 
-  background: var(--white); 
+  background: transparent; 
   text-align: center;
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .gallery { 
-  max-width: 800px; 
-  margin: 0 auto;
+  max-width: 1200px; 
+  margin: 3rem auto 0;
+  padding: 0 1rem;
 }
 
 .gallery__frame { 
   position: relative;
-  border-radius: 12px; 
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery__frame:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .gallery__img { 
@@ -452,22 +461,30 @@ main {
 .section--reviews {
   background: transparent;
   position: relative;
+  padding: 5rem 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  margin: 4rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .reviews {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: 3rem;
+  margin: 3rem auto 0;
+  max-width: 1200px;
+  padding: 0 2rem;
 }
 
 .review {
-  background: rgba(255, 254, 249, 0.9);
-  padding: 2rem;
-  border-radius: 2px;
-  box-shadow: 0 2px 12px rgba(212, 175, 55, 0.08);
-  border: 1px solid rgba(232, 220, 196, 0.6);
+  position: relative;
+  padding: 0;
   transition: all 0.3s ease;
+  text-align: left;
 }
 
 .review:hover {
@@ -477,26 +494,52 @@ main {
 
 .review h4 {
   color: #d4af37;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   margin: 0 0 0.5rem;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  letter-spacing: 1px;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
 .review h5 {
-  color: var(--text-900);
-  font-size: 1rem;
-  margin: 0 0 1rem;
+  color: #fff;
+  font-size: 1.2rem;
+  margin: 0.5rem 0 1rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
 .review blockquote {
   font-style: italic;
-  line-height: 1.6;
-  color: var(--text-900);
+  line-height: 1.8;
+  color: #f0f0f0;
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  position: relative;
+  padding: 0 1rem;
+}
+
+.review blockquote::before,
+.review blockquote::after {
+  content: '"';
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  color: rgba(212, 175, 55, 0.2);
+  position: absolute;
+  line-height: 1;
+}
+
+.review blockquote::before {
+  top: -1.5rem;
+  left: -0.5rem;
+}
+
+.review blockquote::after {
+  bottom: -2.5rem;
+  right: 0.5rem;
 }
 
 /* Contact */
