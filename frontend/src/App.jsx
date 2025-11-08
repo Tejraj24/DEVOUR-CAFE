@@ -111,17 +111,17 @@ function App() {
             <div className="reviews">
               <div className="review">
                 <h4>Review by - Google</h4>
-                <h5>five star review by Sarah M:</h5>
-                <blockquote>What a great place! The coffee flights are amazing. Why order 1 flavor when you can have 4! The food was super flavorful. Staff super friendly and the ambience is super laid back and adorable. Will be back next time we are in town.</blockquote>
+                <h5>★★★★★ review by Anjali</h5>
+                <blockquote>Amazing place with authentic Indian flavors! The chai and snacks are just perfect. The staff is very welcoming and the ambiance reminds me of home.</blockquote>
               </div>
               <div className="review">
                 <h4>Review by - Google</h4>
-                <h5>five star review by Alex K:</h5>
-                <blockquote>If you had to choose only one place to get the best coffee & breakfast it would be ONLY here! Don't even look around, tastes are heavenly delicious! Vibe and seating area feels like your own home, Music and flowers are calming and relaxing.</blockquote>
+                <h5>★★★★★ review by Rajesh</h5>
+                <blockquote>The food is rich in taste and spices, just like traditional Indian cuisine. The decor and music add to the cultural vibe. Highly recommended!</blockquote>
               </div>
               <div className="review">
                 <h4>Review by - Google</h4>
-                <h5>five star review by Priya S:</h5>
+                <h5>★★★★★ review by Priya</h5>
                 <blockquote>The ambiance is beautiful with lots of greenery, and the cappuccino was perfect. A lovely spot to relax and work.</blockquote>
               </div>
             </div>
@@ -145,12 +145,10 @@ function App() {
             <li><Link to="/contact">Contact</Link></li>
           </ul>
         </div>
-        <div className="footer__bar">© {new Date().getFullYear()} Devour Cafe. All rights reserved.</div>
+        <div className="footer__bar"> {new Date().getFullYear()} Devour Cafe. All rights reserved.</div>
       </footer>
     </div>
   )
 }
 
 export default App
-
-

@@ -6,10 +6,10 @@ const sections = [
     title: 'Tea Tasting Menu',
     image: 'https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Ginger Josh', 'Aromatic blend of spices with black tea and milk'],
-      ['Masala Masti', 'Traditional green tea with saffron, spices, and nuts'],
-      ['Ginger Cinnamon Swag', 'Refreshing black tea with honey and fresh lemon'],
-      ['Tulsi Tantra', 'Holy basil and fresh ginger with black tea'],
+      ['Ginger Josh', 'AKadak chai for kadak moods!,Pure adrak wali feeling — ek sip aur neend bhaag jaaye,Thoda tezz, thoda jazba!'],
+      ['Masala Masti', 'Jab chai aur charcha dono ho thode spicy,Ginger, Elaichi, Saunf aur thoda drama bhi, Adds more fire than your group chat!'],
+      ['Ginger Cinnamon Swag', 'Sweet bhi, heat bhi — dono full power mein!,Jab adrak mila dalchini se, sparks ud gaye,Perfect for un logon ke liye jo chai bhi attitude se peete hain.'],
+      ['Tulsi Tantra', 'Sanskari chai, thoda global swag ke saath,Tulsi ke blessings har cup mein,“Om sip namah” vibes only.'],
     ],
   },
   {

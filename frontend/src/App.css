@@ -146,41 +146,28 @@
 }
 
 .hero__video {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
-  z-index: 0;
+  height: 100vh;
   overflow: hidden;
 }
 
-.hero__video video {
-  position: absolute;
-  top: 0;
-  left: 0;
+video#heroVideo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
-/* Ensure video maintains aspect ratio on all devices */
 @media (max-width: 768px) {
-  .hero__video video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+  .hero__video {
+    height: auto;
+    max-height: 100vh;
   }
-}
 
-/* Support image fallback in hero */
-.hero__video img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  video#heroVideo {
+    height: auto;
+    object-fit: contain;
+  }
 }
 
 .hero__overlay {
