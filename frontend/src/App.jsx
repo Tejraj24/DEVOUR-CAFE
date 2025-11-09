@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { FaInstagram } from 'react-icons/fa'
 import './App.css'
 import heroImage from './assets/hero-fallback.jpg'
 import coffeePour from './assets/coffee-pour.jpg'
@@ -68,7 +69,7 @@ function App() {
             <ul>
               <li><a href="#about">About</a></li>
               <li><Link to="/visit">Visit</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+              {/* <li><Link to="/contact">Contact</Link></li> */}
               <li><Link to="/menu">Menu</Link></li>
             </ul>
           </nav>
@@ -143,6 +144,11 @@ function App() {
             <li><a href="#about">About</a></li>
             <li><Link to="/visit">Visit</Link></li>
             <li><Link to="/contact">Contact</Link></li>
+            <li className="social-icon">
+              <a href="https://www.instagram.com/devour.cafe" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <FaInstagram size={24} />
+              </a>
+            </li>
           </ul>
         </div>
         <div className="footer__bar"> {new Date().getFullYear()} Devour Cafe. All rights reserved.</div>

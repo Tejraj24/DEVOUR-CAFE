@@ -256,7 +256,7 @@ const sections = [
   },
   {
     title: 'Chakna',
-    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?q=80&w=1600&auto=format&fit=crop',
+    image: 'https://media.istockphoto.com/id/1025112682/photo/chicken-fajitas.webp?a=1&b=1&s=612x612&w=0&k=20&c=6HOgkgF1DC8F6sD0OMpPbWKisjpdSzNcfUmorjSvyUI=',
     items: [
       ['CHANA JOR GARAM ', 'Tikki-masala vibes – ek bite aur dil ho gaya full dhamaal!'],
       ['PEANUT MASALA ', 'Crunchy, chatpata aur bilkul bindass – mood bhi masaledaar!'],

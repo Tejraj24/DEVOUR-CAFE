@@ -30,12 +30,13 @@ export default function VisitPage() {
             <div className="visit-card">
               <h2>Hours</h2>
               <p>Sun–Sat · 2:00 PM – 2:00 AM</p>
-              <p>Public holidays: 2:00 PM – 2:00 AM</p>
             </div>
             <div className="visit-card">
               <h2>Contact</h2>
               <p>Email: Founder@devour.com</p>
               <p>Phone: (+91) 8769617155</p>
+              <p>Phone: (+91) 9784565246</p>
+              <p>Phone: (+91) 9929221066</p>
             </div>
           </div>
         </section>
