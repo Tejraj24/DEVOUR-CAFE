@@ -6,6 +6,7 @@ import heroImage from './assets/hero-fallback.jpg'
 import coffeePour from './assets/coffee-pour.jpg'
 import pastries from './assets/pastries.jpg'
 import cafeInterior from './assets/cafe-interior.jpg'
+import heroVideoSrc from './assets/Devour.mp4'
 import GalleryCarousel from './components/GalleryCarousel'
 
 function App() {
@@ -56,7 +57,8 @@ function App() {
       <header className="hero">
         <div className="hero__video">
           <video id="heroVideo" autoPlay={isHeroPlaying} muted loop playsInline preload="auto" poster={heroImage} aria-label="Cafe hero background video">
-            <source src="https://static.spotapps.co/website_videos/Founders%20Coffee%20Edited%20Video_Vimeo720p30.mp4" type="video/mp4" />
+            {/* <source src="https://static.spotapps.co/website_videos/Founders%20Coffee%20Edited%20Video_Vimeo720p30.mp4" type="video/mp4" /> */}
+            <source src={heroVideoSrc} type="video/mp4" />
           </video>
         </div>
         <div className="hero__overlay"></div>
@@ -143,7 +145,7 @@ function App() {
           <ul className="footer__links">
             <li><a href="#about">About</a></li>
             <li><Link to="/visit">Visit</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+            {/* <li><Link to="/contact">Contact</Link></li> */}
             <li className="social-icon">
               <a href="https://www.instagram.com/devour.cafe" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <FaInstagram size={24} />
