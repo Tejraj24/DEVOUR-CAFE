@@ -6,11 +6,28 @@ import heroImage from './assets/hero-fallback.jpg'
 import coffeePour from './assets/coffee-pour.jpg'
 import pastries from './assets/pastries.jpg'
 import cafeInterior from './assets/cafe-interior.jpg'
-import heroVideoSrc from './assets/Devour.mp4'
+import devourLogo from './assets/devour-logo.png'
+// import heroVideoSrc from './assets/Devour.mp4'
+import video2 from './assets/video2.mp4'
+import video3 from './assets/video3.mp4'
+import video4 from './assets/video4.mp4'
+// import video5 from './assets/video5.mp4'
 import GalleryCarousel from './components/GalleryCarousel'
 
 function App() {
   const [isHeroPlaying, setIsHeroPlaying] = useState(true);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  
+  // Multiple videos for hero section
+  
+const heroVideos = [
+  // { src: heroVideoSrc, poster: heroImage },
+  { src: video2, poster: video2 },
+  { src: video3, poster: video3 },
+  { src: video4, poster: video4 },
+  // { src: video5, poster: video5 },
+];
+
   const galleryImages = [
     'https://static.spotapps.co/spots/93/bb66438d1f45658a8b54d34e974cce/full',
     'https://static.spotapps.co/spots/d3/c117eae3bc4e608516401915898960/full',
@@ -26,12 +43,36 @@ function App() {
     'https://static.spotapps.co/spots/bc/6a087f9afb4a3d916be5d750f06894/full',
   ];
 
+  // Auto-rotate videos every 10 seconds
+  useEffect(() => {
+    if (heroVideos.length <= 1) return;
+    
+    const interval = setInterval(() => {
+      setCurrentVideoIndex((prev) => (prev + 1) % heroVideos.length);
+    }, 10000);
+    
+    return () => clearInterval(interval);
+  }, [heroVideos.length]);
+
   // Control hero video
   useEffect(() => {
     const video = document.querySelector('#heroVideo');
     if (!video) return;
     if (isHeroPlaying) video.play?.(); else video.pause?.();
-  }, [isHeroPlaying]);
+  }, [isHeroPlaying, currentVideoIndex]);
+
+  // Manual video navigation
+  const nextVideo = () => {
+    setCurrentVideoIndex((prev) => (prev + 1) % heroVideos.length);
+  };
+
+  const prevVideo = () => {
+    setCurrentVideoIndex((prev) => (prev - 1 + heroVideos.length) % heroVideos.length);
+  };
+
+  const goToVideo = (index) => {
+    setCurrentVideoIndex(index);
+  };
 
   // Scroll reveal animations
   useEffect(() => {
@@ -56,13 +97,53 @@ function App() {
     <div className="page">
       <header className="hero">
         <div className="hero__video">
-          <video id="heroVideo" autoPlay={isHeroPlaying} muted loop playsInline preload="auto" poster={heroImage} aria-label="Cafe hero background video">
-            {/* <source src="https://static.spotapps.co/website_videos/Founders%20Coffee%20Edited%20Video_Vimeo720p30.mp4" type="video/mp4" /> */}
-            <source src={heroVideoSrc} type="video/mp4" />
+          <video 
+            key={currentVideoIndex}
+            id="heroVideo" 
+            autoPlay={isHeroPlaying} 
+            muted 
+            loop 
+            playsInline 
+            preload="auto" 
+            poster={heroVideos[currentVideoIndex]?.poster || heroImage} 
+            aria-label="Cafe hero background video"
+          >
+            <source src={heroVideos[currentVideoIndex]?.src} type="video/mp4" />
           </video>
+          
+          {/* Video navigation controls */}
+          {heroVideos.length > 1 && (
+            <div className="hero__video-controls">
+              <button className="hero__video-nav hero__video-nav--prev" onClick={prevVideo} aria-label="Previous video">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              
+              <div className="hero__video-dots">
+                {heroVideos.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`hero__video-dot ${index === currentVideoIndex ? 'is-active' : ''}`}
+                    onClick={() => goToVideo(index)}
+                    aria-label={`Go to video ${index + 1}`}
+                  />
+                ))}
+              </div>
+              
+              <button className="hero__video-nav hero__video-nav--next" onClick={nextVideo} aria-label="Next video">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          )}
         </div>
         <div className="hero__overlay"></div>
         <div className="hero__inner container">
+          <div className="hero__logo">
+            <img src={devourLogo} alt="Devour Cafe Logo" className="hero__logo-img" />
+          </div>
           <button className="hero__play" aria-label={isHeroPlaying ? 'Pause background video' : 'Play background video'} onClick={() => setIsHeroPlaying(p => !p)}>
             {isHeroPlaying ? '❚❚' : '▶'}
           </button>

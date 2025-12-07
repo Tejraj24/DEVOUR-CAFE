@@ -207,6 +207,27 @@
   padding: 2rem 0;
 }
 
+.hero__logo {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  text-align: center;
+}
+
+.hero__logo-img {
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.hero__logo-img:hover {
+  transform: scale(1.05);
+}
+
 .hero__nav { 
   display: flex; 
   align-items: center; 
@@ -802,6 +823,18 @@ main {
     padding: 2rem 1rem;
   }
 
+  .hero__logo {
+    top: 1rem;
+    position: relative;
+    transform: none;
+    left: auto;
+    margin-bottom: 1rem;
+  }
+
+  .hero__logo-img {
+    max-height: 60px;
+  }
+
   /* Sections */
   main {
     margin-top: 0;
@@ -1094,8 +1127,92 @@ main {
   width: 44px; height: 44px;
   display: grid; place-items: center;
   cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 .hero__play:hover { background: rgba(0,0,0,.8); }
+
+/* Video navigation controls */
+.hero__video-controls {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.75rem 1rem;
+  border-radius: 2rem;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.hero__video-nav {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero__video-nav:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.hero__video-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hero__video-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero__video-dot.is-active {
+  background: white;
+  transform: scale(1.2);
+}
+
+.hero__video-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Mobile responsive for video controls */
+@media (max-width: 768px) {
+  .hero__video-controls {
+    bottom: 1rem;
+    padding: 0.5rem 0.75rem;
+    gap: 0.75rem;
+  }
+  
+  .hero__video-nav {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .hero__video-dot {
+    width: 6px;
+    height: 6px;
+  }
+}
 
 /* Lightbox for gallery */
 .lightbox {
