@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaInstagram } from 'react-icons/fa'
+import { FaInstagram, FaBars, FaTimes } from 'react-icons/fa'
 import './App.css'
 import heroImage from './assets/hero-fallback.jpg'
 import coffeePour from './assets/coffee-pour.jpg'
@@ -17,6 +17,7 @@ import GalleryCarousel from './components/GalleryCarousel'
 function App() {
   const [isHeroPlaying, setIsHeroPlaying] = useState(true);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   // Multiple videos for hero section
   
@@ -149,11 +150,17 @@ const heroVideos = [
           </button>
           <nav className="hero__nav">
             <div className="brand">Devour Cafe</div>
-            <ul>
-              <li><a href="#about">About</a></li>
-              <li><Link to="/visit">Visit</Link></li>
-              {/* <li><Link to="/contact">Contact</Link></li> */}
-              <li><Link to="/menu">Menu</Link></li>
+            <button 
+              className="mobile-menu-toggle" 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle navigation menu"
+            >
+              {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+            <ul className={`nav-menu ${isMobileMenuOpen ? 'nav-menu--open' : ''}`}>
+              <li><a href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a></li>
+              <li><Link to="/visit" onClick={() => setIsMobileMenuOpen(false)}>Visit</Link></li>
+              <li><Link to="/menu" onClick={() => setIsMobileMenuOpen(false)}>Menu</Link></li>
             </ul>
           </nav>
           <div className="hero__content">
