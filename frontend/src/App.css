@@ -1406,7 +1406,7 @@ main {
 @media (max-width: 480px) {
   .lightbox__img {
     max-width: 98vw;
-    max-height: 80vh;
+    max-height: 79vh;
   }
 
   .lightbox__nav {
