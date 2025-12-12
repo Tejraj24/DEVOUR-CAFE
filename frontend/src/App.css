@@ -228,66 +228,18 @@
   transform: scale(1.05);
 }
 
-/* Mobile Navigation Layout */
-.mobile-nav-left {
-  display: block;
-}
-
-.hero__nav .hero__logo {
-  display: none;
-}
-
+/* Mobile menu toggle button */
 .mobile-menu-toggle {
   display: none;
-}
-
-@media (max-width: 768px) {
-  .mobile-nav-left {
-    display: block;
-    flex: 1;
-  }
-
-  .hero__nav .hero__logo {
-    display: block;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    flex: 0 0 auto;
-    margin: 0;
-    z-index: 1;
-  }
-
-  .hero__nav .hero__logo-img {
-    max-height: 50px;
-  }
-
-  .hero__nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1rem;
-    position: relative;
-  }
-
-  .mobile-nav-left .brand {
-    font-size: 1.2rem;
-    text-align: left;
-    color: var(--white);
-    margin: 0;
-  }
-
-  .mobile-menu-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-    z-index: 2;
-  }
-
-  /* Hide the main logo from hero__inner on mobile */
-  .hero__inner .hero__logo {
-    display: none;
-  }
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
 }
 
 .mobile-menu-toggle:hover {
@@ -825,18 +777,19 @@ main {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
-    max-width: 300px;
+    width: 85%;
+    max-width: 320px;
     height: 100vh;
     background: linear-gradient(135deg, rgba(13, 59, 46, 0.98) 0%, rgba(19, 78, 58, 0.98) 100%);
     flex-direction: column;
-    gap: 2rem;
-    padding: 5rem 2rem 2rem;
+    gap: 1.5rem;
+    padding: 6rem 2rem 2rem;
     margin: 0;
-    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
-    transition: right 0.3s ease;
+    box-shadow: -4px 0 25px rgba(0, 0, 0, 0.4);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .nav-menu--open {
@@ -845,8 +798,8 @@ main {
 
   .nav-menu li {
     opacity: 0;
-    transform: translateX(20px);
-    animation: slideInMenuItems 0.3s ease forwards;
+    transform: translateX(30px);
+    animation: slideInMenuItems 0.4s ease forwards;
   }
 
   .nav-menu--open li {
@@ -866,17 +819,21 @@ main {
   }
 
   .nav-menu a {
-    font-size: 1.2rem;
-    padding: 1rem;
-    border-radius: 8px;
+    font-size: 1.3rem;
+    padding: 1.2rem 1.5rem;
+    border-radius: 12px;
     text-align: center;
     display: block;
     transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .nav-menu a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(-8px);
+    border-color: rgba(255, 255, 255, 0.3);
   }
   /* Hero Section */
   .hero {
@@ -888,7 +845,7 @@ main {
   .hero__headline {
     font-size: clamp(1.6rem, 5vw, 2.2rem) !important;
     line-height: 1.4;
-    text-align: left;
+    text-align: left; /* i want logo in center  brand name in riggght  mobile togle in lleft with same line as logo */
     margin-bottom: 2rem;
     font-weight: 600;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -899,60 +856,40 @@ main {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 1rem;
+    padding: 1.5rem 1rem;
     position: relative;
   }
 
-  .hero__nav .brand {
-    display: none; /* Hide full brand on mobile */
-  }
-
-  .hero__content {
-    padding: 0 1rem;
-    text-align: left;
-    max-width: 100%;
-  }
-
-  .hero__cta {
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-
-  .btn {
-    padding: 0.9rem 2.5rem;
-    font-size: 0.8rem;
-    width: auto;
-    min-width: 200px;
-    text-align: center;
-  }
-  
-  .btn--primary {
-    background: rgba(255, 254, 249, 0.98);
-    border-width: 2px;
-  }
-  
-  .btn--primary:hover {
-    padding-right: 3rem;
-  }
-  
-  .hero__inner {
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 2rem 1rem;
+  .mobile-menu-toggle {
+    order: 1; /* Left corner */
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
   }
 
   .hero__logo {
-    top: 1rem;
-    position: relative;
-    transform: none;
-    left: auto;
-    margin-bottom: 1rem;
+    order: 2; /* Center */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    display: block;
   }
 
   .hero__logo-img {
-    max-height: 60px;
+    max-height: 50px;
+    filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.3));
+  }
+
+  .hero__nav .brand {
+    font-size: 1.3rem;
+    text-align: right;
+    flex: 1;
+    order: 3; /* Right corner */
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-left: auto;
   }
 
   /* Sections */
@@ -1406,7 +1343,7 @@ main {
 @media (max-width: 480px) {
   .lightbox__img {
     max-width: 98vw;
-    max-height: 79vh;
+    max-height: 80vh;
   }
 
   .lightbox__nav {

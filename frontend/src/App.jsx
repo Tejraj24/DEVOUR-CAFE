@@ -149,12 +149,7 @@ const heroVideos = [
             {isHeroPlaying ? '❚❚' : '▶'}
           </button>
           <nav className="hero__nav">
-            <div className="mobile-nav-left">
-              <div className="brand">Devour</div>
-            </div>
-            <div className="hero__logo">
-              <img src={devourLogo} alt="Devour Cafe Logo" className="hero__logo-img" />
-            </div>
+            <div className="brand">Devour Cafe</div>
             <button 
               className="mobile-menu-toggle" 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
