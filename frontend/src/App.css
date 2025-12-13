@@ -232,11 +232,11 @@
 .mobile-menu-toggle {
   display: none;
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   color: white;
   font-size: 1.5rem;
   padding: 0.75rem;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 10;
@@ -845,11 +845,15 @@ main {
   .hero__headline {
     font-size: clamp(1.6rem, 5vw, 2.2rem) !important;
     line-height: 1.4;
+    display: none;
     text-align: left; /* i want logo in center  brand name in riggght  mobile togle in lleft with same line as logo */
     margin-bottom: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
     font-weight: 600;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
   }
 
   .hero__nav {
@@ -863,8 +867,9 @@ main {
   .mobile-menu-toggle {
     order: 1; /* Left corner */
     background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 0.5px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
+    display: none;
   }
 
   .hero__logo {
@@ -877,19 +882,20 @@ main {
   }
 
   .hero__logo-img {
-    max-height: 50px;
+    max-height: 80px;
     filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.3));
   }
 
   .hero__nav .brand {
     font-size: 1.3rem;
-    text-align: right;
-    flex: 1;
+    text-align: left;
+    flex: none;
     order: 3; /* Right corner */
-    margin: 0;
+    margin: 0 0 0 11rem;
     font-weight: 700;
     letter-spacing: 0.5px;
-    margin-left: auto;
+    min-width: 140px;
+    display: none;
   }
 
   /* Sections */
@@ -1052,22 +1058,64 @@ main {
   }
 }
 
-/* Tablet Responsive */
+/* Tablet Responsive Styles */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .hero__headline {
-    font-size: 3rem;
+  .hero__logo-img {
+    max-height: 65px;
   }
 
-  .menu {
-    grid-template-columns: repeat(2, 1fr);
+  .hero__nav .brand {
+    font-size: 1.4rem;
+    margin: 0 0 0 6rem;
   }
 
-  .reviews {
-    grid-template-columns: repeat(2, 1fr);
+  .mobile-menu-toggle {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+  }
+}
+
+/* Small Mobile Responsive Styles */
+@media (max-width: 480px) {
+  .hero__logo-img {
+    max-height: 45px;
   }
 
-  .container {
-    width: 90%;
+  .hero__nav .brand {
+    font-size: 1.1rem;
+    margin: 0 0 0 8rem;
+    min-width: 100px;
+  }
+
+  .mobile-menu-toggle {
+    padding: 0.6rem;
+    font-size: 1.3rem;
+  }
+
+  .hero__nav {
+    padding: 1rem 0.8rem;
+  }
+}
+
+/* Extra Small Mobile Responsive Styles */
+@media (max-width: 360px) {
+  .hero__logo-img {
+    max-height: 40px;
+  }
+
+  .hero__nav .brand {
+    font-size: 1rem;
+    margin: 0 0 0 6rem;
+    min-width: 80px;
+  }
+
+  .mobile-menu-toggle {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  .hero__nav {
+    padding: 0.8rem 0.6rem;
   }
 }
 
