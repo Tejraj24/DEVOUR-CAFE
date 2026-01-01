@@ -166,7 +166,7 @@ const heroVideos = [
           <div className="hero__content">
             <h1 className="hero__headline">Visit us Near Rtech Mall, Jagtpura</h1>
             <div className="hero__cta">
-              <Link className="btn btn--primary" to="/visit">Visit us</Link>
+              <Link className="btn btn--primary" to="/menu">Menu</Link>
             </div>
           </div>
         </div>
