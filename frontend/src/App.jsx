@@ -6,13 +6,12 @@ import heroImage from './assets/hero-fallback.jpg'
 import coffeePour from './assets/coffee-pour.jpg'
 import pastries from './assets/pastries.jpg'
 import cafeInterior from './assets/cafe-interior.jpg'
-import devourLogo from './assets/devour-logo.png'
-// import heroVideoSrc from './assets/Devour.mp4'
-import video2 from './assets/video2.mp4'
 import video3 from './assets/video3.mp4'
 import video4 from './assets/video4.mp4'
-// import video5 from './assets/video5.mp4'
+import devourLogo from './assets/devour-logo.png'
+// import heroVideoSrc from './assets/Devour.mp4'
 import GalleryCarousel from './components/GalleryCarousel'
+import ImageTrail from './components/ImageTrail'
 
 function App() {
   const [isHeroPlaying, setIsHeroPlaying] = useState(true);
@@ -22,11 +21,7 @@ function App() {
   // Multiple videos for hero section
   
 const heroVideos = [
-  // { src: heroVideoSrc, poster: heroImage },
-  { src: video2, poster: video2 },
-  { src: video3, poster: video3 },
-  { src: video4, poster: video4 },
-  // { src: video5, poster: video5 },
+  { src: 'https://71three.sfo3.cdn.digitaloceanspaces.com/jf/home_web-1.mp4', poster: heroImage },
 ];
 
   const galleryImages = [
@@ -42,6 +37,13 @@ const heroVideos = [
     'https://static.spotapps.co/spots/9a/a375030491497caa256a7eeb80c211/full',
     'https://static.spotapps.co/spots/2d/4d4c3ca6ec4c48b12754f8074fc374/full',
     'https://static.spotapps.co/spots/bc/6a087f9afb4a3d916be5d750f06894/full',
+  ];
+
+  const trailImages = [
+    coffeePour,
+    pastries,
+    cafeInterior,
+    ...galleryImages.slice(0, 5)
   ];
 
   // Auto-rotate videos every 10 seconds
@@ -88,6 +90,39 @@ const heroVideos = [
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
+  }, []);
+
+  // 3D tilt tracking effect for About section images
+  useEffect(() => {
+    const card = document.querySelector('.about-images');
+    if (!card) return;
+
+    const handleMouseMove = (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const xc = ((x / rect.width) - 0.5).toFixed(3);
+      const yc = ((y / rect.height) - 0.5).toFixed(3);
+
+      card.style.setProperty('--x', xc);
+      card.style.setProperty('--y', yc);
+      card.style.setProperty('--hover', '1');
+    };
+
+    const handleMouseLeave = () => {
+      card.style.setProperty('--x', '0');
+      card.style.setProperty('--y', '0');
+      card.style.setProperty('--hover', '0');
+    };
+
+    card.addEventListener('mousemove', handleMouseMove);
+    card.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      card.removeEventListener('mousemove', handleMouseMove);
+      card.removeEventListener('mouseleave', handleMouseLeave);
+    };
   }, []);
 
   
@@ -174,14 +209,37 @@ const heroVideos = [
 
       <main>
 
-        <section
-          id="about"
-          className="section section--about reveal"
-        >
-          <div className="container">
-            <h2 className="section__title">About us</h2>
-            <h3>Devour Cafe</h3>
-            <p>Devour Cafe is locally owned and locally focused, offering handcrafted beverages and food every day. Featuring friendly service and natural ambience, Devour Cafe is the perfect space for coffee, meet-ups, and co-working.</p>
+        <section id="about" className="section section--about reveal">
+          <ImageTrail images={trailImages} />
+          <div className="container about-grid" style={{ position: 'relative', zIndex: 2 }}>
+            <div className="about-content">
+              <span className="section__subtitle">Welcome to</span>
+              <h2 className="section__title">Devour Cafe</h2>
+              <div className="about-text">
+                <p>Devour Cafe is locally owned and locally focused, offering handcrafted beverages and food every day.</p>
+                <p>Featuring friendly service and natural ambience, our space is the perfect retreat for coffee lovers, creative meet-ups, and peaceful co-working sessions.</p>
+              </div>
+              <div className="about-stats">
+                <div className="stat">
+                  <span className="stat-number">100%</span>
+                  <span className="stat-label">Organic</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-number">Hand</span>
+                  <span className="stat-label">Crafted</span>
+                </div>
+              </div>
+              <Link to="/visit" className="btn btn--outline">Visit Us</Link>
+            </div>
+            <div className="about-images">
+              <div className="image-stack">
+                <div className="gold-frame-arch"></div>
+                <img src={cafeInterior} alt="Cafe Interior" className="img-main" loading="lazy" />
+                <div className="img-secondary-wrapper">
+                  <img src={coffeePour} alt="Coffee Pouring" className="img-secondary" loading="lazy" />
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

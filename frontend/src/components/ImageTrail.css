@@ -1,0 +1,39 @@
+.image-trail-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.trail-image {
+  position: absolute;
+  transform: translate(-50%, -50%) scale(0.5) rotate(var(--rot, 0deg));
+  width: 180px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
+  opacity: 1;
+  animation: trailFade 1.2s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border: 4px solid #fffef9;
+}
+
+@keyframes trailFade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2) rotate(var(--rot, 0deg));
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(var(--rot, 0deg));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6) translateY(40px) rotate(var(--rot, 0deg));
+  }
+}
