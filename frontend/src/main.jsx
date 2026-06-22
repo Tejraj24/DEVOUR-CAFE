@@ -5,13 +5,15 @@ import './index.css'
 import App from './App.jsx'
 import MenuPage from './pages/MenuPage.jsx'
 import VisitPage from './pages/VisitPage.jsx'
-// import ContactPage from './pages/ContactPage.jsx'
+import ContactPage from './pages/ContactPage.jsx'
+import ReservationPage from './pages/ReservationPage.jsx'
 
 const router = createBrowserRouter([
   { path: '/', element: <App /> },
   { path: '/menu', element: <MenuPage /> },
   { path: '/visit', element: <VisitPage /> },
-  // { path: '/contact', element: <ContactPage /> },
+  { path: '/contact', element: <ContactPage /> },
+  { path: '/reserve', element: <ReservationPage /> },
 ])
 
 const rootElement = document.getElementById('root')

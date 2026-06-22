@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import emailjs from '@emailjs/browser'
 import './contact.css'
 
@@ -52,6 +53,7 @@ export default function ContactPage() {
         <div className="container">
           <h1 className="contact-title">Get in touch</h1>
           <p className="contact-subtitle">We'd love to hear from you. Questions or feedback — say hello.</p>
+          <Link to="/" className="btn btn--light" style={{ marginTop: '1.5rem', display: 'inline-block' }}>← Back to Home</Link>
         </div>
       </header>
 

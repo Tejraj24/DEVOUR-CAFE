@@ -13,6 +13,95 @@ import devourLogo from './assets/devour-logo.png'
 import GalleryCarousel from './components/GalleryCarousel'
 import ImageTrail from './components/ImageTrail'
 
+const reviewsData = [
+  {
+    author: "Anjali",
+    source: "Google",
+    rating: 5,
+    text: "Amazing place with authentic Indian flavors! The chai and snacks are just perfect. The staff is very welcoming and the ambiance reminds me of home."
+  },
+  {
+    author: "Rajesh",
+    source: "Google",
+    rating: 5,
+    text: "The food is rich in taste and spices, just like traditional Indian cuisine. The decor and music add to the cultural vibe. Highly recommended!"
+  },
+  {
+    author: "Priya",
+    source: "Google",
+    rating: 5,
+    text: "The ambiance is beautiful with lots of greenery, and the cappuccino was perfect. A lovely spot to relax and work."
+  }
+];
+
+function ReviewSlider() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (isHovered) return;
+    const timer = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % reviewsData.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [isHovered]);
+
+  const handleDotClick = (index) => {
+    setActiveIndex(index);
+  };
+
+  return (
+    <div 
+      className="reviews-slider"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="reviews-slider__track">
+        {reviewsData.map((review, idx) => {
+          const isActive = idx === activeIndex;
+          const initial = review.author.charAt(0);
+          return (
+            <div 
+              key={review.author} 
+              className={`reviews-slider__slide ${isActive ? 'reviews-slider__slide--active' : ''}`}
+              aria-hidden={!isActive}
+            >
+              <div className="review-card">
+                <div className="review-card__avatar">
+                  <span>{initial}</span>
+                </div>
+                <div className="review-card__stars">
+                  {"★".repeat(review.rating)}
+                </div>
+                <blockquote className="review-card__quote">
+                  <span className="quote-mark quote-mark--left">“</span>
+                  {review.text}
+                  <span className="quote-mark quote-mark--right">”</span>
+                </blockquote>
+                <div className="review-card__meta">
+                  <span className="review-card__author">{review.author}</span>
+                  <span className="review-card__source">via {review.source}</span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      
+      <div className="reviews-slider__dots">
+        {reviewsData.map((_, idx) => (
+          <button
+            key={idx}
+            className={`reviews-slider__dot ${idx === activeIndex ? 'reviews-slider__dot--active' : ''}`}
+            onClick={() => handleDotClick(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [isHeroPlaying, setIsHeroPlaying] = useState(true);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
@@ -176,32 +265,71 @@ const heroVideos = [
           )}
         </div>
         <div className="hero__overlay"></div>
-        <div className="hero__inner container">
-          <div className="hero__logo">
-            <img src={devourLogo} alt="Devour Cafe Logo" className="hero__logo-img" />
-          </div>
-          <button className="hero__play" aria-label={isHeroPlaying ? 'Pause background video' : 'Play background video'} onClick={() => setIsHeroPlaying(p => !p)}>
-            {isHeroPlaying ? '❚❚' : '▶'}
-          </button>
-          <nav className="hero__nav">
-            <div className="brand">Devour Cafe</div>
+        
+        {/* Split Logo Navigation Header */}
+        <nav className="site-header-nav">
+          <div className="site-header-nav__inner container">
+            
+            {/* Mobile menu toggle (Left on mobile, hidden on desktop) */}
             <button 
               className="mobile-menu-toggle" 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle navigation menu"
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
             </button>
-            <ul className={`nav-menu ${isMobileMenuOpen ? 'nav-menu--open' : ''}`}>
-              <li><a href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a></li>
-              <li><Link to="/visit" onClick={() => setIsMobileMenuOpen(false)}>Visit</Link></li>
-              <li><Link to="/menu" onClick={() => setIsMobileMenuOpen(false)}>Menu</Link></li>
+
+            {/* Left Menu Links (Desktop) */}
+            <div className="site-header-nav__col site-header-nav__col--left">
+              <ul className="site-header-nav__menu">
+                <li><Link to="/menu">menu</Link></li>
+                <li><a href="#about">about</a></li>
+              </ul>
+            </div>
+
+            {/* Center Logo Icon */}
+            <div className="site-header-nav__col site-header-nav__col--center">
+              <Link to="/" className="site-header-nav__logo">
+                <img src={devourLogo} alt="Devour Cafe Logo" />
+              </Link>
+            </div>
+
+            {/* Right Menu Links (Desktop) */}
+            <div className="site-header-nav__col site-header-nav__col--right">
+              <ul className="site-header-nav__menu">
+                <li><Link to="/contact">contact</Link></li>
+                <li><Link to="/reserve" className="site-header-nav__btn">reserve</Link></li>
+              </ul>
+            </div>
+
+            {/* Mobile Brand Name (Right on mobile, hidden on desktop) */}
+            <div className="site-header-nav__brand-mobile">
+              <span>devour cafe</span>
+            </div>
+
+          </div>
+
+          {/* Mobile Navigation overlay */}
+          <div className={`mobile-nav-overlay ${isMobileMenuOpen ? 'mobile-nav-overlay--open' : ''}`}>
+            <ul className="mobile-nav-menu">
+              <li><Link to="/" onClick={() => setIsMobileMenuOpen(false)}>home</Link></li>
+              <li><Link to="/menu" onClick={() => setIsMobileMenuOpen(false)}>menu</Link></li>
+              <li><a href="#about" onClick={() => { setIsMobileMenuOpen(false); document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); }}>about</a></li>
+              <li><Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>contact</Link></li>
+              <li><Link to="/reserve" onClick={() => setIsMobileMenuOpen(false)} className="mobile-nav-btn">reserve</Link></li>
             </ul>
-          </nav>
+          </div>
+        </nav>
+
+        <div className="hero__inner container">
+          <button className="hero__play" aria-label={isHeroPlaying ? 'Pause background video' : 'Play background video'} onClick={() => setIsHeroPlaying(p => !p)}>
+            {isHeroPlaying ? '❚❚' : '▶'}
+          </button>
           <div className="hero__content">
-            <h1 className="hero__headline">Visit us Near Rtech Mall, Jagtpura</h1>
+            <h1 className="hero__headline">be kind to every kind.</h1>
             <div className="hero__cta">
-              <Link className="btn btn--primary" to="/menu">Menu</Link>
+              <Link className="btn btn--primary" to="/menu">order now</Link>
             </div>
           </div>
         </div>
@@ -257,23 +385,7 @@ const heroVideos = [
         <section className="section section--reviews reveal">
           <div className="container">
             <h2 className="section__title">Reviews</h2>
-            <div className="reviews">
-              <div className="review">
-                <h4>Review by - Google</h4>
-                <h5>★★★★★ review by Anjali</h5>
-                <blockquote>Amazing place with authentic Indian flavors! The chai and snacks are just perfect. The staff is very welcoming and the ambiance reminds me of home.</blockquote>
-              </div>
-              <div className="review">
-                <h4>Review by - Google</h4>
-                <h5>★★★★★ review by Rajesh</h5>
-                <blockquote>The food is rich in taste and spices, just like traditional Indian cuisine. The decor and music add to the cultural vibe. Highly recommended!</blockquote>
-              </div>
-              <div className="review">
-                <h4>Review by - Google</h4>
-                <h5>★★★★★ review by Priya</h5>
-                <blockquote>The ambiance is beautiful with lots of greenery, and the cappuccino was perfect. A lovely spot to relax and work.</blockquote>
-              </div>
-            </div>
+            <ReviewSlider />
           </div>
         </section>
 
@@ -282,24 +394,104 @@ const heroVideos = [
         {/* Contact section moved to dedicated /contact page */}
       </main>
 
-      <footer className="footer">
-        <div className="container footer__inner">
-          <div>
-            <div className="brand brand--invert">Devour Cafe</div>
-            <p>Where nature meets flavor in every cup. Experience the art of exceptional coffee.</p>
-          </div>
-          <ul className="footer__links">
-            <li><a href="#about">About</a></li>
-            <li><Link to="/visit">Visit</Link></li>
-            {/* <li><Link to="/contact">Contact</Link></li> */}
-            <li className="social-icon">
-              <a href="https://www.instagram.com/devour.cafe" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <FaInstagram size={24} />
-              </a>
-            </li>
-          </ul>
+      <footer className="site-footer">
+        
+        {/* Section A: Instagram Load More */}
+        <div className="footer-instagram">
+          <a href="https://www.instagram.com/devour.cafe" target="_blank" rel="noopener noreferrer" className="footer-instagram__link">
+            <FaInstagram size={28} className="footer-instagram__icon" />
+            <span className="footer-instagram__text">load more</span>
+            <span className="footer-instagram__dots">...</span>
+          </a>
         </div>
-        <div className="footer__bar"> {new Date().getFullYear()} Devour Cafe. All rights reserved.</div>
+
+        {/* Section B: White Navigation Bar */}
+        <div className="footer-nav">
+          <div className="container footer-nav__inner">
+            <div className="footer-nav__logo-container">
+              <Link to="/" className="footer-nav__logo">
+                <img src={devourLogo} alt="Devour Cafe" />
+                <span className="footer-nav__brand-name">devour cafe</span>
+              </Link>
+            </div>
+            <ul className="footer-nav__menu">
+              <li><Link to="/menu">menu</Link></li>
+              <li><a href="#about">about</a></li>
+              <li><Link to="/visit">visit</Link></li>
+              <li><Link to="/contact">contact</Link></li>
+              <li><Link to="/reserve">reserve</Link></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Section C: Dark Forest Green Banner with Vines */}
+        <div className="footer-banner">
+          {/* SVG Draping Leaves */}
+          <div className="footer-banner__leaves">
+            <svg viewBox="0 0 1000 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 0 0 C 30 15 50 5 80 0 C 110 15 130 25 160 0 C 190 20 210 10 240 0 C 270 15 290 30 320 0 C 350 25 370 15 400 0 C 430 15 450 5 480 0 C 510 20 530 25 560 0 C 590 15 610 5 640 0 C 670 20 690 30 720 0 C 750 15 770 5 800 0 C 830 20 850 15 880 0 C 910 15 930 25 960 0 C 980 10 990 5 1000 0 L 1000 40 L 960 55 C 930 45 910 50 880 35 C 850 50 830 45 800 35 C 770 45 750 55 720 35 C 690 55 670 45 640 35 C 610 45 590 50 560 35 C 530 50 510 45 480 35 C 450 45 430 55 400 35 C 370 55 350 45 320 35 C 290 45 270 50 240 35 C 210 50 190 45 160 35 C 130 45 110 55 80 35 C 50 55 30 45 0 35 Z" fill="#2c6b55" />
+              {/* Individual detailed leaf paths for realistic vine overlay */}
+              {/* Leaf 1 */}
+              <path d="M 80 0 Q 95 30 110 25 Q 90 45 80 0" fill="#1b4d3e" />
+              <path d="M 80 0 Q 65 30 50 25 Q 70 45 80 0" fill="#2d7e65" />
+              {/* Leaf 2 */}
+              <path d="M 240 0 Q 255 35 270 25 Q 250 50 240 0" fill="#1e5c4a" />
+              <path d="M 240 0 Q 220 30 205 35 Q 225 45 240 0" fill="#359275" />
+              {/* Leaf 3 */}
+              <path d="M 400 0 Q 420 40 435 30 Q 410 55 400 0" fill="#1b4d3e" />
+              {/* Leaf 4 */}
+              <path d="M 560 0 Q 575 35 590 25 Q 570 50 560 0" fill="#2d7e65" />
+              <path d="M 560 0 Q 545 30 530 35 Q 545 45 560 0" fill="#1e5c4a" />
+              {/* Leaf 5 */}
+              <path d="M 720 0 Q 740 40 755 30 Q 730 55 720 0" fill="#359275" />
+              {/* Leaf 6 */}
+              <path d="M 880 0 Q 895 35 910 25 Q 890 50 880 0" fill="#1b4d3e" />
+              <path d="M 880 0 Q 860 30 845 35 Q 865 45 880 0" fill="#2d7e65" />
+            </svg>
+          </div>
+          
+          <div className="container footer-banner__inner">
+            <div className="footer-banner__phone">
+              <a href="tel:+919929059003">(+91) 9929059003</a>
+            </div>
+            <div className="footer-banner__order">
+              <Link to="/menu" className="footer-banner__order-link">order now</Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Section D: Bottom Info Section */}
+        <div className="footer-info">
+          <div className="container footer-info__inner">
+            
+            {/* Left Column: Brand & Address */}
+            <div className="footer-info__col">
+              <h3 className="footer-info__title">devour cafe</h3>
+              <p className="footer-info__text">
+                a157, jaipur, shri kishanpura<br />
+                rajasthan 302017
+              </p>
+            </div>
+
+            {/* Center Column: Hours */}
+            <div className="footer-info__col">
+              <h3 className="footer-info__title">business hours</h3>
+              <p className="footer-info__text">
+                sun–sat · 2:00 pm – 2:00 am
+              </p>
+            </div>
+
+            {/* Right Column: Copyright */}
+            <div className="footer-info__col footer-info__col--right">
+              <p className="footer-info__copyright">
+                &copy; {new Date().getFullYear()} devour cafe. all rights reserved.
+              </p>
+              <span className="footer-info__signature">by antigravity</span>
+            </div>
+
+          </div>
+        </div>
+
       </footer>
     </div>
   )

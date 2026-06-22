@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './visit.css'
 import heroImage from '../assets/hero-fallback.jpg'
 
@@ -16,6 +17,7 @@ export default function VisitPage() {
         <div className="container">
           <h1 className="visit-title">Visit Devour Cafe</h1>
           <p className="visit-subtitle">A refined escape for great coffee and conversation</p>
+          <Link to="/" className="btn btn--light" style={{ marginTop: '1.5rem', display: 'inline-block' }}>← Back to Home</Link>
         </div>
       </header>
 
