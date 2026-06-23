@@ -726,7 +726,6 @@ const heroVideos = [
               <p className="footer-info__copyright">
                 &copy; {new Date().getFullYear()} devour cafe. all rights reserved.
               </p>
-              <span className="footer-info__signature">by antigravity</span>
             </div>
 
           </div>
