@@ -297,11 +297,12 @@
 }
 
 .menu-item:hover .menu-item__img-wrapper {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.02) translateZ(0);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
 .menu-item:hover .menu-item__img-wrapper img {
-  transform: scale(1.05);
+  transform: scale(1.08) translateZ(0);
 }
 
 .menu-item__info {

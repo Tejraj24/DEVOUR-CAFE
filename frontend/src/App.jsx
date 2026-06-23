@@ -13,6 +13,13 @@ import devourLogo from './assets/devour-logo.png'
 import GalleryCarousel from './components/GalleryCarousel'
 import ImageTrail from './components/ImageTrail'
 
+// Import GSAP and Lenis
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Lenis from 'lenis'
+
+gsap.registerPlugin(ScrollTrigger);
+
 const reviewsData = [
   {
     author: "Anjali",
@@ -66,7 +73,7 @@ function ReviewSlider() {
               className={`reviews-slider__slide ${isActive ? 'reviews-slider__slide--active' : ''}`}
               aria-hidden={!isActive}
             >
-              <div className="review-card">
+              <div className={`review-card review-card-float ${idx === 1 ? 'review-card-float--delayed-1' : idx === 2 ? 'review-card-float--delayed-2' : ''}`}>
                 <div className="review-card__avatar">
                   <span>{initial}</span>
                 </div>
@@ -166,19 +173,170 @@ const heroVideos = [
     setCurrentVideoIndex(index);
   };
 
-  // Scroll reveal animations
+  // Global Scroll & Animation Setup (Lenis & GSAP ScrollTrigger)
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      })
-    }, { threshold: 0.15 });
+    // Respect user prefers-reduced-motion settings
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      document.querySelectorAll('.scrollytelling-step, .scrollytelling-image').forEach(el => {
+        el.classList.add('active');
+      });
+      return;
+    }
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    // 1. Initialize Lenis Smooth Scrolling
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    // 2. Hero cinematic scroll animations
+    const heroTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      }
+    });
+
+    heroTl.to("#heroVideo", { scale: 1.1, ease: "none" }, 0);
+    heroTl.to(".hero__overlay", { opacity: 0.75, ease: "none" }, 0);
+    heroTl.to(".hero__headline", { y: -60, opacity: 0, ease: "none" }, 0);
+    heroTl.to(".hero__subtitle", { y: -45, opacity: 0, ease: "none" }, 0);
+    heroTl.to(".hero__scroll-indicator", { opacity: 0, ease: "none" }, 0);
+
+    // 3. Featured Categories Scrollytelling Section Pinning & Stagger
+    const steps = gsap.utils.toArray(".scrollytelling-step");
+    const scrollytellingTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".scrollytelling-section",
+        start: "top top",
+        end: "+=400%",
+        scrub: true,
+        pin: true,
+        anticipatePin: 1,
+        onUpdate: (self) => {
+          // Sync active categories step active classes based on scroll progress
+          const progress = self.progress;
+          const stepCount = steps.length;
+          const activeIdx = Math.min(Math.floor(progress * stepCount), stepCount - 1);
+          
+          steps.forEach((step, idx) => {
+            const stepEl = document.getElementById(`scrollytelling-step-${idx}`);
+            const imgEl = document.getElementById(`scrollytelling-img-${idx}`);
+            if (idx === activeIdx) {
+              stepEl?.classList.add('active');
+              imgEl?.classList.add('active');
+            } else {
+              stepEl?.classList.remove('active');
+              imgEl?.classList.remove('active');
+            }
+          });
+        }
+      }
+    });
+
+    // Crossfades timeline scrub triggers
+    steps.forEach((_, idx) => {
+      if (idx === 0) return;
+      const prevIdx = idx - 1;
+      const startTime = prevIdx * 1;
+
+      scrollytellingTl.to(`#scrollytelling-img-${prevIdx}`, { opacity: 0, scale: 1.05, duration: 0.5 }, startTime);
+      scrollytellingTl.to(`#scrollytelling-img-${idx}`, { opacity: 1, scale: 1, duration: 0.5 }, startTime);
+
+      scrollytellingTl.to(`#scrollytelling-step-${prevIdx}`, { opacity: 0, y: -20, duration: 0.3 }, startTime);
+      scrollytellingTl.fromTo(`#scrollytelling-step-${idx}`, 
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.5 },
+        startTime + 0.2
+      );
+    });
+
+    // 4. About Section Reveal Animations (Trigger only once)
+    const aboutTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".section--about",
+        start: "top 75%",
+        toggleActions: "play none none none",
+      }
+    });
+
+    aboutTl.fromTo(".section--about .section__subtitle", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
+    aboutTl.fromTo(".section--about .section__title", { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.4");
+    aboutTl.fromTo(".section--about .about-text p", 
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power2.out" },
+      "-=0.4"
+    );
+    aboutTl.fromTo(".section--about .about-stats .stat", 
+      { opacity: 0, y: 25 },
+      { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" },
+      "-=0.4"
+    );
+    aboutTl.fromTo(".section--about .btn", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.3");
+
+    // Parallax on about Stack images
+    gsap.fromTo(".img-main", 
+      { y: 30 },
+      { 
+        y: -30, 
+        ease: "none", 
+        scrollTrigger: {
+          trigger: ".section--about",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        }
+      }
+    );
+    gsap.fromTo(".img-secondary", 
+      { y: -20 },
+      { 
+        y: 40, 
+        ease: "none", 
+        scrollTrigger: {
+          trigger: ".section--about",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        }
+      }
+    );
+
+    // 5. Reviews Stagger Reveal
+    gsap.fromTo(".review-card", 
+      { opacity: 0, y: 40 },
+      { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.8, 
+        stagger: 0.2, 
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".section--reviews",
+          start: "top 80%",
+          toggleActions: "play none none none",
+        }
+      }
+    );
+
+    return () => {
+      lenis.destroy();
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
   }, []);
 
   // 3D tilt tracking effect for About section images
@@ -328,16 +486,98 @@ const heroVideos = [
           </button>
           <div className="hero__content">
             <h1 className="hero__headline">be kind to every kind.</h1>
+            <p className="hero__subtitle">fresh organic brews & delicious street food</p>
             <div className="hero__cta">
               <Link className="btn btn--primary" to="/menu">order now</Link>
             </div>
+          </div>
+          <div className="hero__scroll-indicator">
+            <span>scroll</span>
+            <div className="hero__scroll-line"></div>
           </div>
         </div>
       </header>
 
       <main>
 
-        <section id="about" className="section section--about reveal">
+        {/* Featured Categories Scrollytelling Section */}
+        <section className="scrollytelling-section">
+          <div className="scrollytelling-section__inner">
+            <div className="scrollytelling-section__sticky">
+              <div className="scrollytelling-section__layout container">
+                <div className="scrollytelling-section__text-side">
+                  <div className="scrollytelling-section__intro">
+                    <span className="section__subtitle scrollytelling-section__main-subtitle">Every craving has a story.</span>
+                    <h2 className="section__title scrollytelling-section__main-title">From Morning Coffee To Midnight Cravings</h2>
+                  </div>
+                  <div className="scrollytelling-section__category-info">
+                    <div className="scrollytelling-step active" id="scrollytelling-step-0">
+                      <span className="scrollytelling-step__emoji">☕</span>
+                      <h3 className="scrollytelling-step__title">Morning Brew</h3>
+                      <p className="scrollytelling-step__desc">Sip on our handcrafted artisanal coffees. Locally sourced organic beans roasted to perfection to kickstart your day with pure energy.</p>
+                    </div>
+                    <div className="scrollytelling-step" id="scrollytelling-step-1">
+                      <span className="scrollytelling-step__emoji">🍜</span>
+                      <h3 className="scrollytelling-step__title">Quick Comfort</h3>
+                      <p className="scrollytelling-step__desc">Your favorite instant comfort food, elevated. From classic masala to peri-peri tadka, it is the ultimate quick indulgence.</p>
+                    </div>
+                    <div className="scrollytelling-step" id="scrollytelling-step-2">
+                      <span className="scrollytelling-step__emoji">🍕</span>
+                      <h3 className="scrollytelling-step__title">The Sharing Circle</h3>
+                      <p className="scrollytelling-step__desc">Thin crust artisan pizzas loaded with fresh toppings and creamy melted mozzarella. A slice of pure joy made to be shared.</p>
+                    </div>
+                    <div className="scrollytelling-step" id="scrollytelling-step-3">
+                      <span className="scrollytelling-step__emoji">🥤</span>
+                      <h3 className="scrollytelling-step__title">Cool Refreshment</h3>
+                      <p className="scrollytelling-step__desc">Sip on the refreshing flavor of our vibrant mocktails, from a cooling mint mojito to tropical pina coladas.</p>
+                    </div>
+                    <div className="scrollytelling-step" id="scrollytelling-step-4">
+                      <span className="scrollytelling-step__emoji">🍰</span>
+                      <h3 className="scrollytelling-step__title">Sweet Obsession</h3>
+                      <p className="scrollytelling-step__desc">Indulge in sweet perfection. Thick, rich milkshakes, loaded chocolate waffles, and freshly baked gooey brownies.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="scrollytelling-section__visual-side">
+                  <div className="scrollytelling-section__image-container">
+                    <img 
+                      id="scrollytelling-img-0"
+                      src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1200&auto=format&fit=crop" 
+                      alt="Coffee" 
+                      className="scrollytelling-image active"
+                    />
+                    <img 
+                      id="scrollytelling-img-1"
+                      src="https://images.unsplash.com/photo-1692273212247-f5efb3fc9b87?q=80&w=1200&auto=format&fit=crop" 
+                      alt="Maggi" 
+                      className="scrollytelling-image"
+                    />
+                    <img 
+                      id="scrollytelling-img-2"
+                      src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop" 
+                      alt="Pizza" 
+                      className="scrollytelling-image"
+                    />
+                    <img 
+                      id="scrollytelling-img-3"
+                      src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=1200&auto=format&fit=crop" 
+                      alt="Mocktails" 
+                      className="scrollytelling-image"
+                    />
+                    <img 
+                      id="scrollytelling-img-4"
+                      src={pastries} 
+                      alt="Desserts" 
+                      className="scrollytelling-image"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="section section--about">
           <ImageTrail images={trailImages} />
           <div className="container about-grid" style={{ position: 'relative', zIndex: 2 }}>
             <div className="about-content">
@@ -374,7 +614,7 @@ const heroVideos = [
         {/* Visit section moved to dedicated /visit page */}
 
         {/* Reviews above gallery to match arrangement */}
-        <section className="reveal">
+        <section>
           <div className="container">
             <h2 className="section__title">Our Gallery</h2>
           </div>
@@ -382,7 +622,7 @@ const heroVideos = [
         </section>
 
         {/* Gallery below reviews */}
-        <section className="section section--reviews reveal">
+        <section className="section section--reviews">
           <div className="container">
             <h2 className="section__title">Reviews</h2>
             <ReviewSlider />

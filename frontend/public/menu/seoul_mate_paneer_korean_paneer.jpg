@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="700"
+   height="600"
+   viewBox="0 0 185.20833 158.75"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="hangul_chosongul.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="354.99285"
+     inkscape:cy="353.82063"
+     inkscape:document-units="mm"
+     inkscape:current-layer="text12"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1088"
+     inkscape:window-height="1117"
+     inkscape:window-x="561"
+     inkscape:window-y="345"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-138.24999)">
+    <g
+       aria-label="조선글
+한글"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       id="text12">
+      <path
+         d="m 61.98624,182.0544 -3.273778,3.83822 -14.449777,-9.31333 c -3.894667,3.78178 -11.119555,7.90222 -16.989777,9.42622 l -3.104445,-4.17689 c 11.853333,-2.99155 19.924889,-11.06311 23.480888,-16.93333 H 28.288908 v -4.51556 h 27.149777 c -0.790223,3.83823 -4.007556,9.03111 -7.507111,12.64356 z m 5.192889,16.98978 H 19.42713 v -4.74134 H 40.537352 V 183.0704 h 5.023555 v 11.23244 h 21.618222 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56.44444275px;font-family:SeoulNamsan;-inkscape-font-specification:SeoulNamsan;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         id="path18" />
+      <path
+         d="m 112.24384,190.52107 h -5.08 v -19.812 H 95.197622 v -4.62845 h 11.966218 v -11.51466 h 5.08 z m -14.449774,-9.87778 -3.556,3.556 -10.667999,-10.44222 c -3.104445,5.92666 -8.184444,9.42622 -11.176,10.78088 l -3.386666,-3.78177 c 5.418666,-2.31423 12.135555,-8.46667 12.135555,-18.45734 v -4.79777 h 5.249333 v 4.79777 c 0,2.31423 -0.282222,4.45912 -0.790222,6.37823 z m 15.070664,26.19022 H 85.489178 v -17.49778 h 5.136444 v 12.75645 h 22.239108 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56.44444275px;font-family:SeoulNamsan;-inkscape-font-specification:SeoulNamsan;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         id="path20" />
+      <path
+         d="m 165.9569,179.28862 h -47.80844 v -4.62844 c 0,0 29.91555,0 29.85911,0 1.35466,-4.79778 1.86266,-10.72445 1.91911,-13.82889 h -21.78756 v -4.74133 h 27.09334 c 0,6.54755 -0.73378,12.7 -2.032,18.57022 h 12.75644 z m -9.48267,28.10933 h -27.37555 v -14.05466 h 20.71511 v -4.51556 h -20.99733 v -4.62844 h 26.24666 v 13.77244 h -20.65866 v 4.62845 h 22.06977 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56.44444275px;font-family:SeoulNamsan;-inkscape-font-specification:SeoulNamsan;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         id="path22" />
+      <path
+         d="m 92.060104,245.32862 h -8.918222 v 17.66711 h -5.023556 v -37.87422 h 5.023556 v 15.35289 h 8.918222 z M 65.869882,232.96729 c -2.370666,0.22577 -6.716889,0.33866 -11.176,0 -3.725333,-0.45156 -5.757333,-1.46756 -6.886222,-2.14489 l 1.580445,-3.89467 c 1.298222,0.56445 3.104444,1.07245 5.757333,1.41111 3.951111,0.33867 8.297333,0.28222 10.724444,-0.0564 z m 6.208889,7.67644 H 59.548105 c -3.330223,0 -5.531556,0.79022 -6.886222,2.42711 -1.975556,2.37067 -1.862667,6.32178 0.677333,8.29733 2.596444,1.91912 6.660444,1.58045 8.805333,-0.508 1.580444,-1.524 1.919111,-4.91066 -0.564444,-6.26533 l 3.668888,-3.16089 c 3.273778,2.08845 4.572,7.50711 1.241778,12.02267 -2.935111,4.00755 -11.288889,5.19289 -16.086666,1.86267 -5.023556,-3.49956 -4.910667,-10.44223 -2.54,-13.37734 0.169333,-0.22577 1.241778,-1.07244 1.806222,-1.29822 h -7.224889 v -4.62844 h 29.633333 z m 11.796888,36.74533 H 56.44366 v -16.19955 h 5.136445 v 11.45822 h 22.295554 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56.44444275px;font-family:SeoulNamsan;-inkscape-font-specification:SeoulNamsan;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         id="path24" />
+      <path
+         d="M 141.97904,249.84417 H 94.170598 v -4.62844 c 0,0 29.915552,0 29.859112,0 1.35466,-4.79778 1.86266,-10.72444 1.91911,-13.82889 h -21.78756 v -4.74133 h 27.09334 c 0,6.54755 -0.73378,12.7 -2.032,18.57022 h 12.75644 z m -9.48267,28.10934 h -27.37555 v -14.05467 h 20.71511 v -4.51555 H 104.8386 v -4.62845 h 26.24666 v 13.77245 H 110.4266 v 4.62844 h 22.06977 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56.44444275px;font-family:SeoulNamsan;-inkscape-font-specification:SeoulNamsan;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         id="path26" />
+    </g>
+  </g>
+</svg>
