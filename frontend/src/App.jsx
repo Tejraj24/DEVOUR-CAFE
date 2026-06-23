@@ -628,109 +628,65 @@ const heroVideos = [
             <ReviewSlider />
           </div>
         </section>
-
         {/* Reserve section moved to /reserve page */}
 
         {/* Contact section moved to dedicated /contact page */}
       </main>
 
-      <footer className="site-footer">
-        
-        {/* Section A: Instagram Load More */}
-        <div className="footer-instagram">
-          <a href="https://www.instagram.com/devour.cafe" target="_blank" rel="noopener noreferrer" className="footer-instagram__link">
-            <FaInstagram size={28} className="footer-instagram__icon" />
-            <span className="footer-instagram__text">load more</span>
-            <span className="footer-instagram__dots">...</span>
-          </a>
-        </div>
-
-        {/* Section B: White Navigation Bar */}
-        <div className="footer-nav">
-          <div className="container footer-nav__inner">
-            <div className="footer-nav__logo-container">
-              <Link to="/" className="footer-nav__logo">
-                <img src={devourLogo} alt="Devour Cafe" />
-                <span className="footer-nav__brand-name">devour cafe</span>
-              </Link>
-            </div>
-            <ul className="footer-nav__menu">
-              <li><Link to="/menu">menu</Link></li>
-              <li><a href="#about">about</a></li>
-              <li><Link to="/visit">visit</Link></li>
-              <li><Link to="/contact">contact</Link></li>
-              <li><Link to="/reserve">reserve</Link></li>
-            </ul>
+      <footer>
+        {/* Section 1: CTA Band */}
+        <div className="footer-cta">
+          <div className="footer-cta__left">
+            <a href="tel:+919929059003" className="footer-cta__phone">(+91) 9929059003</a>
+          </div>
+          <div className="footer-cta__center">
+            <a href="https://www.instagram.com/devour.cafe" target="_blank" rel="noopener noreferrer" className="footer-cta__instagram">
+              <FaInstagram size={28} className="footer-cta__icon" />
+            </a>
+          </div>
+          <div className="footer-cta__right">
+            <Link to="/menu" className="footer-cta__order btn btn--primary">Order Now</Link>
           </div>
         </div>
 
-        {/* Section C: Dark Forest Green Banner with Vines */}
-        <div className="footer-banner">
-          {/* SVG Draping Leaves */}
-          <div className="footer-banner__leaves">
-            <svg viewBox="0 0 1000 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 0 0 C 30 15 50 5 80 0 C 110 15 130 25 160 0 C 190 20 210 10 240 0 C 270 15 290 30 320 0 C 350 25 370 15 400 0 C 430 15 450 5 480 0 C 510 20 530 25 560 0 C 590 15 610 5 640 0 C 670 20 690 30 720 0 C 750 15 770 5 800 0 C 830 20 850 15 880 0 C 910 15 930 25 960 0 C 980 10 990 5 1000 0 L 1000 40 L 960 55 C 930 45 910 50 880 35 C 850 50 830 45 800 35 C 770 45 750 55 720 35 C 690 55 670 45 640 35 C 610 45 590 50 560 35 C 530 50 510 45 480 35 C 450 45 430 55 400 35 C 370 55 350 45 320 35 C 290 45 270 50 240 35 C 210 50 190 45 160 35 C 130 45 110 55 80 35 C 50 55 30 45 0 35 Z" fill="#2c6b55" />
-              {/* Individual detailed leaf paths for realistic vine overlay */}
-              {/* Leaf 1 */}
-              <path d="M 80 0 Q 95 30 110 25 Q 90 45 80 0" fill="#1b4d3e" />
-              <path d="M 80 0 Q 65 30 50 25 Q 70 45 80 0" fill="#2d7e65" />
-              {/* Leaf 2 */}
-              <path d="M 240 0 Q 255 35 270 25 Q 250 50 240 0" fill="#1e5c4a" />
-              <path d="M 240 0 Q 220 30 205 35 Q 225 45 240 0" fill="#359275" />
-              {/* Leaf 3 */}
-              <path d="M 400 0 Q 420 40 435 30 Q 410 55 400 0" fill="#1b4d3e" />
-              {/* Leaf 4 */}
-              <path d="M 560 0 Q 575 35 590 25 Q 570 50 560 0" fill="#2d7e65" />
-              <path d="M 560 0 Q 545 30 530 35 Q 545 45 560 0" fill="#1e5c4a" />
-              {/* Leaf 5 */}
-              <path d="M 720 0 Q 740 40 755 30 Q 730 55 720 0" fill="#359275" />
-              {/* Leaf 6 */}
-              <path d="M 880 0 Q 895 35 910 25 Q 890 50 880 0" fill="#1b4d3e" />
-              <path d="M 880 0 Q 860 30 845 35 Q 865 45 880 0" fill="#2d7e65" />
-            </svg>
-          </div>
-          
-          <div className="container footer-banner__inner">
-            <div className="footer-banner__phone">
-              <a href="tel:+919929059003">(+91) 9929059003</a>
-            </div>
-            <div className="footer-banner__order">
-              <Link to="/menu" className="footer-banner__order-link">order now</Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Section D: Bottom Info Section */}
-        <div className="footer-info">
-          <div className="container footer-info__inner">
-            
-            {/* Left Column: Brand & Address */}
-            <div className="footer-info__col">
-              <h3 className="footer-info__title">devour cafe</h3>
-              <p className="footer-info__text">
-                a157, jaipur, shri kishanpura<br />
-                rajasthan 302017
+        {/* Section 2: Main Footer Grid */}
+        <div className="footer-main">
+          <div className="container footer-main__inner">
+            <div className="footer-col">
+              <h3 className="footer-col__title">Devour Cafe</h3>
+              <p className="footer-col__text">
+                a157, Jaipur, Shri Kishanpura<br />
+                Rajasthan 302017
               </p>
             </div>
-
-            {/* Center Column: Hours */}
-            <div className="footer-info__col">
-              <h3 className="footer-info__title">business hours</h3>
-              <p className="footer-info__text">
-                sun–sat · 2:00 pm – 2:00 am
-              </p>
+            <div className="footer-col">
+              <h3 className="footer-col__title">Business Hours</h3>
+              <p className="footer-col__text">Sun–Sat · 2:00 pm – 2:00 am</p>
             </div>
-
-            {/* Right Column: Copyright */}
-            <div className="footer-info__col footer-info__col--right">
-              <p className="footer-info__copyright">
-                &copy; {new Date().getFullYear()} devour cafe. all rights reserved.
-              </p>
+            <div className="footer-col">
+              <h3 className="footer-col__title">Quick Links</h3>
+              <ul className="footer-col__list">
+                <li><Link to="/menu">Menu</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/visit">Visit</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+              </ul>
             </div>
-
+            <div className="footer-col">
+              <h3 className="footer-col__title">Follow Us</h3>
+              <a href="https://www.instagram.com/devour.cafe" target="_blank" rel="noopener noreferrer" className="footer-social__icon">
+                <FaInstagram size={24} />
+              </a>
+            </div>
           </div>
         </div>
 
+        {/* Section 3: Bottom Copyright */}
+        <div className="footer-bottom">
+          <div className="container footer-bottom__inner">
+            <p className="footer-bottom__copy">&copy; {new Date().getFullYear()} Devour Cafe. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
     </div>
   )

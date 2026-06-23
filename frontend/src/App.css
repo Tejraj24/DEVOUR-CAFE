@@ -2629,3 +2629,205 @@ html.lenis-smooth {
   animation-delay: -4s;
 }
 
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+/* --- CTA Band (Section 1) --- */
+.footer-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 2.5rem 5%;
+  background: #0d1a14;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.footer-cta__left {
+  flex: 1;
+}
+
+.footer-cta__phone {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  font-weight: 600;
+  color: #d4af37;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.footer-cta__phone:hover {
+  color: #f0c842;
+  letter-spacing: 0.06em;
+}
+
+.footer-cta__center {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-cta__instagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: #d4af37;
+  text-decoration: none;
+  transition: all 0.35s ease;
+}
+
+.footer-cta__instagram:hover {
+  background: #d4af37;
+  color: #0d1a14;
+  border-color: #d4af37;
+  transform: scale(1.1) rotate(8deg);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.footer-cta__icon {
+  display: block;
+}
+
+.footer-cta__right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer-cta__order.btn--primary {
+  background: transparent;
+  color: #d4af37;
+  border-color: #d4af37;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.footer-cta__order.btn--primary:hover {
+  background: #d4af37;
+  color: #0d1a14;
+  border-color: #d4af37;
+  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.35);
+}
+
+/* --- Main Footer Grid (Section 2) --- */
+.footer-main {
+  background: #111c16;
+  padding: 4rem 0 3rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-main__inner {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+}
+
+@media (max-width: 900px) {
+  .footer-main__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .footer-main__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-cta {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .footer-cta__right {
+    justify-content: center;
+  }
+}
+
+.footer-col__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #d4af37;
+  margin: 0 0 1.25rem;
+}
+
+.footer-col__text {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+.footer-col__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footer-col__list li a {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: color 0.25s ease, padding-left 0.25s ease;
+  display: inline-block;
+}
+
+.footer-col__list li a:hover {
+  color: #d4af37;
+  padding-left: 6px;
+}
+
+.footer-social__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-social__icon:hover {
+  background: #d4af37;
+  color: #0d1a14;
+  border-color: #d4af37;
+  transform: scale(1.1);
+}
+
+/* --- Bottom Copyright Bar (Section 3) --- */
+.footer-bottom {
+  background: #0a1410;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.25rem 0;
+}
+
+.footer-bottom__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-bottom__copy {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
