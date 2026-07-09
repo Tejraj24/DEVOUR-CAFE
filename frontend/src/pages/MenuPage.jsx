@@ -24,14 +24,9 @@ const sections = [
     title: 'Hot Coffee',
     image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['Desi Hot Coffee', 'Gaon wali feel, sheher wali style'],
-      ['South Indian Filter Coffee', 'Idli sambhar ke asli soulmate'],
       ['Espresso Shot', 'Seedha dil pe lagti hai yeh teekhi wali chhoot!'],
-      ['Classic Americano', 'Bilkul straight, no drama'],
       ['Cafe Latte', 'Doodh bhi, pyaar bhi'],
-      ['Caramel Coffee', 'Thoda meetha, thoda classy'],
-      ['Cappuccino', 'Foam itna ki shaadi ke sapne aa jaayein'],
-      ['Cortado', 'Half-half jaise complicated rishtay']
+      ['Cappuccino', 'Foam itna ki shaadi ke sapne aa jaayein']
     ],
   },
   {
@@ -67,7 +62,6 @@ const sections = [
       ['Veggie Loaded Maggi', 'Fresh veggies, full flavour – thoda healthy, thoda tasty!'],
       ['Cheese Burst Maggi', 'Melty cheese + masala Maggi = swad ka explosion!'],
       ['Tandoori Tadka Maggi', 'Smoky flavour, spicy twist – ekdum dhaba style!'],
-      ['Peri Peri Maggi', 'Thodi hatke, thodi spicy – perfect for the bold souls!'],
       ['Butter Garlic Maggi', 'Soft noodles + makhan + lahsun = comfort ka ultimate combo!']
     ],
   },
@@ -92,9 +86,7 @@ const sections = [
         group: 'Idli Special',
         items: [
           ['Podi Idli'],
-          ['Peri Peri Idli'],
           ['Fried Idli'],
-          ['Vaghar Idli'],
           ['Idli Sambhar'],
         ]
       },
@@ -127,12 +119,7 @@ const sections = [
           ['Mel Jhol Pakoda', 'Saucy, Spicy, Full On Mood']
         ]
       },
-      { 
-        group: 'Samosa Affair',
-        items: [
-          ['Samosa Chat with Chole', 'Desi Romance In A Plate']
-        ]
-      }
+      
     ]
   },
     {
@@ -154,8 +141,6 @@ const sections = [
     items: [
       ['Classic Paneer Wrap', 'पर classic swag, Bite magic!'],
       ['Veggie Delight Wrap', 'Veggies full tadka, Mood full ध!'],
-      ['Aloo Tikki Wrap', 'Crispy Tikki, Chatpata Zaika'],
-      ['Tandoori Paneer Wrap', 'Tandoor, Full-On Swag'],
       ['Veg & Noodle Wrap', 'Noodles twist, Zaika lift!'],
     ],
   },
@@ -163,7 +148,6 @@ const sections = [
     title: 'Sandwiches',
     image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['VEG-ILICIOUS (Vegetable Sandwich)', 'Har bite mein garden party 🌿 — thoda green, thoda queen!'],
       ['COLESLAW SWAG (Coleslaw Sandwich)', 'Creamy vibes only — coolness ka overdose'],
       ['CLUB WALA LOVE (Club Sandwich)', '3 layers of temptation — ek khaya, dil gaya!'],
       ['BOMBAY MAGIC (Bombay Sandwich)', 'Masala, memories & masti — ek bite aur local train miss!'],
@@ -191,8 +175,6 @@ const sections = [
       ['ALFREDO AFFAIR', 'Creamy vibes, dreamy feels — itna smooth ke ल घल ए!'],
       ['AGLIO E OLIO ATTITUDE', 'Simple, sexy aur full Italian tashan 🇮🇹 — olive oil bhi blush kare!'],
       ['ARRABBIATA ANGER MANAGEMENT', 'Thoda tezz, thoda jazba — spice level: ex-boyfriend revenge!'],
-      ['ROSY VEG ROMANCE', 'White + Red = Love Story — pasta bhi filmy nikla!'],
-      ['PESTO PASSION', 'Green, fresh, aur full of life — हर bite – mamma mia!'],
       ['SPICY SHIITAKE DRAMA', 'मशरूम mast madness taste itna bold, censor board fail!'],
     ],
   },
@@ -215,15 +197,12 @@ const sections = [
     title: 'Noodles & Rice',
     image: 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?q=80&w=1600&auto=format&fit=crop',
     items: [
-      ['BBQ BABY CORN DRAMA', 'Smoky, saucy aur full attitude – corn bhi hot ho sakta hai!'],
       ['VEG NOODLES VIBE', 'Simple nahi, seductive hai – slurp karo, flirt karo!'],
       ['HAKKA HO JA! (Hakka Noodles)', 'Full toss of taste – street wala swag, five-star wala feel!'],
       ['SINGAPORE SWING (Singapore Noodles)', 'Ek bite aur tu globe-trotter – spice ka passport ready hai!'],
       ['CHILLI GARLIC NOODLES', 'Thoda tezz, thoda tease – dil mein garam, mood mein charm!'],
-      ['VEGETABLE RICE RAGA', 'Simple soul food – rice bhi classy lag sakta hai!'],
       ['SCHEZWAN SIZZLE RICE', 'Laal mirch ka jadoo – har grain mein China Town ka thrill!'],
       ['CHILLY GARLIC GROOVE', 'Garlic ka glow-up – thoda hot, thoda hypnotic!'],
-      ['KERALA VEG BIRYANI', 'Coconut, curry aur coastal romance – desi heart, global art!'],
     ],
   },
 
@@ -238,7 +217,6 @@ const sections = [
       ['CILANTRO GREEN ONION', 'Fresh, funky, aur full attitude – herb ka swag level: MAX!'],
       ['PESTO PASSION', 'Green dreams, creamy schemes – हर bite  "Bellissimo!"'],
       ['QUATTRO FORMAGGI', '4 cheeses, 1 love story – dil melt, mood set!'],
-      ['BBQ PANEER PARTY', 'Desi grill, videsi thrill – paneer ka bold avatar!'],
       ['CHEESE BURST BLISS', 'Cheese ka tsunami – mouth full, soul full!'],
       ['MORE THAN WORDS', 'Soft base, deep feels – itna pyaar pizza mein bhi ho sakta hai!']
     ],
@@ -288,7 +266,6 @@ const sections = [
       ['KITKAT CRUNCH' , 'Break bhi, bake bhi – ek crunch aur zindagi set!'],
       ['OREO OBSESSION' , 'Black & white wala jazba – thoda cookie, thoda naughty!'],
       ['TRIPLE CHOCOLATE TEMPTATION' , 'Teen guna chocolate, ek hi crime – overdose of delicious sin!'],
-      ['BISCOFF BLISS' , 'Caramel dreams & cinnamon feels – London ka taste, India ka dil!'],
       ['SIZZLER BROWNIE' , 'Garami bhi, mithaas bhi – hot plate, hotter date!'],
       ['NUTELLA NIRVANA' , 'Hazelnut ka husn – spread the love, lick the happiness!'],
       ['HAZELNUT BROWNIE HIGH' , 'Crunchy, gooey aur thoda luxury – yeh brownie nahi, fantasy hai!'],
