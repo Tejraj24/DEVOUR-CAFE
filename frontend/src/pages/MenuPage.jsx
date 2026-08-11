@@ -25,7 +25,6 @@ const sections = [
     image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=1600&auto=format&fit=crop',
     items: [
       ['Espresso Shot', 'Seedha dil pe lagti hai yeh teekhi wali chhoot!'],
-      ['Cafe Latte', 'Doodh bhi, pyaar bhi'],
       ['Cappuccino', 'Foam itna ki shaadi ke sapne aa jaayein']
     ],
   },
@@ -78,25 +77,7 @@ const sections = [
       ['Paneer Bhujji Paratha']
     ],
   },
-  {
-    title: 'Halka Fulka Khana',
-    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?q=80&w=1600&auto=format&fit=crop',
-    items: [
-      { 
-        group: 'Idli Special',
-        items: [
-          ['Podi Idli'],
-          ['Fried Idli'],
-          ['Idli Sambhar'],
-        ]
-      },
-      ['Pav Bhaji', 'Buttered bread + veggie mash = happiness smeared generously'],
-      ['Dahi K Shole', 'Yogurt + spice = flavor fireworks!'],
-      ['Rajma Chawal', 'The ultimate comfort cuddle in a plate'],
-      ['Chole Chawal', `When your stomach says, "I want something chole-licious!"`],
-      ['Hara Bhara Kebab', 'Green, mean, and totally bean-credible'],
-    ],
-  },
+
   {
     title: 'Chaat Corner',
     image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=1600&auto=format&fit=crop',
@@ -279,12 +260,7 @@ const imageMapping = {
   "masala masti": "/menu/masala_masti.jpg",
   "ginger cinnamon swag": "/menu/ginger_cinnamon_swag.jpg",
   "tulsi tantra": "/menu/tulsi_tantra.jpg",
-  "desi hot coffee": "/menu/desi_hot_coffee.jpg",
-  "south indian filter coffee": "/menu/south_indian_filter_coffee.jpg",
   "espresso shot": "/menu/espresso_shot.jpg",
-  "classic americano": "/menu/classic_americano.jpg",
-  "cafe latte": "/menu/cafe_latte.jpg",
-  "caramel coffee": "/menu/caramel_coffee.jpg",
   "cappuccino": "/menu/cappuccino.jpg",
   "cortado": "/menu/cortado.jpg",
   "cold coffee": "/menu/cold_coffee.jpg",
@@ -298,7 +274,6 @@ const imageMapping = {
   "veggie loaded maggi": "/menu/veggie_loaded_maggi.jpg",
   "cheese burst maggi": "/menu/cheese_burst_maggi.jpg",
   "tandoori tadka maggi": "/menu/tandoori_tadka_maggi.jpg",
-  "peri peri maggi": "/menu/peri_peri_maggi.jpg",
   "butter garlic maggi": "/menu/butter_garlic_maggi.jpg",
   "aloo paratha": "/menu/aloo_paratha.jpg",
   "pyaz paratha": "/menu/pyaz_paratha.jpg",
@@ -307,16 +282,7 @@ const imageMapping = {
   "bhujia paratha": "/menu/bhujia_paratha.jpg",
   "mix veg paratha": "/menu/mix_veg_paratha.jpg",
   "paneer bhujji paratha": "/menu/paneer_bhujji_paratha.jpg",
-  "podi idli": "/menu/podi_idli.jpg",
-  "peri peri idli": "/menu/peri_peri_idli.jpg",
-  "fried idli": "/menu/fried_idli.jpg",
-  "vaghar idli": "/menu/vaghar_idli.jpg",
-  "idli sambhar": "/menu/idli_sambhar.jpg",
-  "pav bhaji": "/menu/pav_bhaji.jpg",
-  "dahi k shole": "/menu/dahi_k_shole.jpg",
-  "rajma chawal": "/menu/rajma_chawal.jpg",
-  "chole chawal": "/menu/chole_chawal.jpg",
-  "hara bhara kebab": "/menu/hara_bhara_kebab.jpg",
+
   "vada pav": "/menu/vada_pav.jpg",
   "maska bun": "/menu/maska_bun.jpg",
   "kachchi dabeli": "/menu/kachchi_dabeli.jpg",
