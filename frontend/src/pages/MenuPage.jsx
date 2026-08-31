@@ -680,23 +680,25 @@ export default function MenuPage() {
         </div>
       </div>
 
-      {/* Sticky Category Quick Nav (Only show when not searching or matches exist) */}
+      {/* Sticky Category Quick Nav (Infinite Motion Ticker) */}
       {filteredSections.length > 0 && (
         <div className="menu-nav-sticky">
           <div className="menu-nav-track">
-            {sections.map((sec) => {
-              const isRendered = filteredSections.some(fs => fs.title === sec.title);
-              return (
-                <button 
-                  key={sec.title} 
-                  className={`menu-nav-pill ${!isRendered ? 'menu-nav-pill--muted' : ''}`}
-                  onClick={() => scrollToCategory(sec.title)}
-                  disabled={!isRendered}
-                >
-                  {sec.title}
-                </button>
-              );
-            })}
+            <div className="menu-nav-marquee-content">
+              {[...sections, ...sections].map((sec, idx) => {
+                const isRendered = filteredSections.some(fs => fs.title === sec.title);
+                return (
+                  <button 
+                    key={`${sec.title}-${idx}`} 
+                    className={`menu-nav-pill ${!isRendered ? 'menu-nav-pill--muted' : ''}`}
+                    onClick={() => scrollToCategory(sec.title)}
+                    disabled={!isRendered}
+                  >
+                    {sec.title}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       )}

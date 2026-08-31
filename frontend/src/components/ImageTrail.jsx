@@ -5,6 +5,11 @@ export default function ImageTrail({ images }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
+    // Disable on touch screens or small viewports
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const isMobileViewport = window.innerWidth <= 768;
+    if (isTouchDevice || isMobileViewport) return;
+
     const container = containerRef.current;
     if (!container || !images || images.length === 0) return;
 

@@ -113,12 +113,57 @@ function App() {
   const [isHeroPlaying, setIsHeroPlaying] = useState(true);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(0);
+
+  // Monitor viewport size for mobile layout
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 900);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Multiple videos for hero section
   
 const heroVideos = [
   { src: 'https://71three.sfo3.cdn.digitaloceanspaces.com/jf/home_web-1.mp4', poster: heroImage },
 ];
+
+  const categories = [
+    {
+      emoji: "☕",
+      title: "Morning Brew",
+      desc: "Sip on our handcrafted artisanal coffees. Locally sourced organic beans roasted to perfection to kickstart your day with pure energy.",
+      img: "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      emoji: "🍜",
+      title: "Quick Comfort",
+      desc: "Your favorite instant comfort food, elevated. From classic masala to peri-peri tadka, it is the ultimate quick indulgence.",
+      img: "https://images.unsplash.com/photo-1692273212247-f5efb3fc9b87?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      emoji: "🍕",
+      title: "The Sharing Circle",
+      desc: "Thin crust artisan pizzas loaded with fresh toppings and creamy melted mozzarella. A slice of pure joy made to be shared.",
+      img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      emoji: "🥤",
+      title: "Cool Refreshment",
+      desc: "Sip on the refreshing flavor of our vibrant mocktails, from a cooling mint mojito to tropical pina coladas.",
+      img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      emoji: "🍰",
+      title: "Sweet Obsession",
+      desc: "Indulge in sweet perfection. Thick, rich milkshakes, loaded chocolate waffles, and freshly baked gooey brownies.",
+      img: pastries
+    }
+  ];
 
   const galleryImages = [
     'https://static.spotapps.co/spots/93/bb66438d1f45658a8b54d34e974cce/full',
@@ -217,51 +262,85 @@ const heroVideos = [
     heroTl.to(".hero__subtitle", { y: -45, opacity: 0, ease: "none" }, 0);
     heroTl.to(".hero__scroll-indicator", { opacity: 0, ease: "none" }, 0);
 
-    // 3. Featured Categories Scrollytelling Section Pinning & Stagger
-    const steps = gsap.utils.toArray(".scrollytelling-step");
-    const scrollytellingTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".scrollytelling-section",
-        start: "top top",
-        end: "+=400%",
-        scrub: true,
-        pin: true,
-        anticipatePin: 1,
-        onUpdate: (self) => {
-          // Sync active categories step active classes based on scroll progress
-          const progress = self.progress;
-          const stepCount = steps.length;
-          const activeIdx = Math.min(Math.floor(progress * stepCount), stepCount - 1);
-          
-          steps.forEach((step, idx) => {
-            const stepEl = document.getElementById(`scrollytelling-step-${idx}`);
-            const imgEl = document.getElementById(`scrollytelling-img-${idx}`);
-            if (idx === activeIdx) {
-              stepEl?.classList.add('active');
-              imgEl?.classList.add('active');
-            } else {
-              stepEl?.classList.remove('active');
-              imgEl?.classList.remove('active');
-            }
-          });
+    // Setup matchMedia responsive timeline animations
+    let mm = gsap.matchMedia();
+
+    // Desktop categories scrollytelling (min-width: 901px)
+    mm.add("(min-width: 901px)", () => {
+      // 3. Featured Categories Scrollytelling Section Pinning & Stagger
+      const steps = gsap.utils.toArray(".scrollytelling-step");
+      const scrollytellingTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".scrollytelling-section",
+          start: "top top",
+          end: "+=400%",
+          scrub: true,
+          pin: true,
+          anticipatePin: 1,
+          onUpdate: (self) => {
+            // Sync active categories step active classes based on scroll progress
+            const progress = self.progress;
+            const stepCount = steps.length;
+            const activeIdx = Math.min(Math.floor(progress * stepCount), stepCount - 1);
+            
+            steps.forEach((step, idx) => {
+              const stepEl = document.getElementById(`scrollytelling-step-${idx}`);
+              const imgEl = document.getElementById(`scrollytelling-img-${idx}`);
+              if (idx === activeIdx) {
+                stepEl?.classList.add('active');
+                imgEl?.classList.add('active');
+              } else {
+                stepEl?.classList.remove('active');
+                imgEl?.classList.remove('active');
+              }
+            });
+          }
         }
-      }
-    });
+      });
 
-    // Crossfades timeline scrub triggers
-    steps.forEach((_, idx) => {
-      if (idx === 0) return;
-      const prevIdx = idx - 1;
-      const startTime = prevIdx * 1;
+      // Crossfades timeline scrub triggers
+      steps.forEach((_, idx) => {
+        if (idx === 0) return;
+        const prevIdx = idx - 1;
+        const startTime = prevIdx * 1;
 
-      scrollytellingTl.to(`#scrollytelling-img-${prevIdx}`, { opacity: 0, scale: 1.05, duration: 0.5 }, startTime);
-      scrollytellingTl.to(`#scrollytelling-img-${idx}`, { opacity: 1, scale: 1, duration: 0.5 }, startTime);
+        scrollytellingTl.to(`#scrollytelling-img-${prevIdx}`, { opacity: 0, scale: 1.05, duration: 0.5 }, startTime);
+        scrollytellingTl.to(`#scrollytelling-img-${idx}`, { opacity: 1, scale: 1, duration: 0.5 }, startTime);
 
-      scrollytellingTl.to(`#scrollytelling-step-${prevIdx}`, { opacity: 0, y: -20, duration: 0.3 }, startTime);
-      scrollytellingTl.fromTo(`#scrollytelling-step-${idx}`, 
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.5 },
-        startTime + 0.2
+        scrollytellingTl.to(`#scrollytelling-step-${prevIdx}`, { opacity: 0, y: -20, duration: 0.3 }, startTime);
+        scrollytellingTl.fromTo(`#scrollytelling-step-${idx}`, 
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.5 },
+          startTime + 0.2
+        );
+      });
+
+      // Parallax on about Stack images
+      gsap.fromTo(".img-main", 
+        { y: 30 },
+        { 
+          y: -30, 
+          ease: "none", 
+          scrollTrigger: {
+            trigger: ".section--about",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          }
+        }
+      );
+      gsap.fromTo(".img-secondary", 
+        { y: -20 },
+        { 
+          y: 40, 
+          ease: "none", 
+          scrollTrigger: {
+            trigger: ".section--about",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          }
+        }
       );
     });
 
@@ -288,34 +367,6 @@ const heroVideos = [
     );
     aboutTl.fromTo(".section--about .btn", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.3");
 
-    // Parallax on about Stack images
-    gsap.fromTo(".img-main", 
-      { y: 30 },
-      { 
-        y: -30, 
-        ease: "none", 
-        scrollTrigger: {
-          trigger: ".section--about",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        }
-      }
-    );
-    gsap.fromTo(".img-secondary", 
-      { y: -20 },
-      { 
-        y: 40, 
-        ease: "none", 
-        scrollTrigger: {
-          trigger: ".section--about",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        }
-      }
-    );
-
     // 5. Reviews Stagger Reveal
     gsap.fromTo(".review-card", 
       { opacity: 0, y: 40 },
@@ -336,11 +387,13 @@ const heroVideos = [
     return () => {
       lenis.destroy();
       ScrollTrigger.getAll().forEach(t => t.kill());
+      mm.revert();
     };
   }, []);
 
-  // 3D tilt tracking effect for About section images
+  // 3D tilt tracking effect for About section images (disabled on mobile)
   useEffect(() => {
+    if (isMobile) return;
     const card = document.querySelector('.about-images');
     if (!card) return;
 
@@ -370,7 +423,7 @@ const heroVideos = [
       card.removeEventListener('mousemove', handleMouseMove);
       card.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, []);
+  }, [isMobile]);
 
   
 
@@ -510,66 +563,49 @@ const heroVideos = [
                     <span className="section__subtitle scrollytelling-section__main-subtitle">Every craving has a story.</span>
                     <h2 className="section__title scrollytelling-section__main-title">From Morning Coffee To Midnight Cravings</h2>
                   </div>
+
+                  {/* Horizontal Scrollable Tabs bar for Mobile devices */}
+                  {isMobile && (
+                    <div className="scrollytelling-mobile-nav">
+                      {categories.map((cat, idx) => (
+                        <button
+                          key={idx}
+                          className={`scrollytelling-mobile-tab ${idx === activeCategory ? 'is-active' : ''}`}
+                          onClick={() => setActiveCategory(idx)}
+                          aria-label={`Show ${cat.title}`}
+                        >
+                          <span className="scrollytelling-mobile-tab__emoji">{cat.emoji}</span>
+                          <span className="scrollytelling-mobile-tab__title">{cat.title}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
                   <div className="scrollytelling-section__category-info">
-                    <div className="scrollytelling-step active" id="scrollytelling-step-0">
-                      <span className="scrollytelling-step__emoji">☕</span>
-                      <h3 className="scrollytelling-step__title">Morning Brew</h3>
-                      <p className="scrollytelling-step__desc">Sip on our handcrafted artisanal coffees. Locally sourced organic beans roasted to perfection to kickstart your day with pure energy.</p>
-                    </div>
-                    <div className="scrollytelling-step" id="scrollytelling-step-1">
-                      <span className="scrollytelling-step__emoji">🍜</span>
-                      <h3 className="scrollytelling-step__title">Quick Comfort</h3>
-                      <p className="scrollytelling-step__desc">Your favorite instant comfort food, elevated. From classic masala to peri-peri tadka, it is the ultimate quick indulgence.</p>
-                    </div>
-                    <div className="scrollytelling-step" id="scrollytelling-step-2">
-                      <span className="scrollytelling-step__emoji">🍕</span>
-                      <h3 className="scrollytelling-step__title">The Sharing Circle</h3>
-                      <p className="scrollytelling-step__desc">Thin crust artisan pizzas loaded with fresh toppings and creamy melted mozzarella. A slice of pure joy made to be shared.</p>
-                    </div>
-                    <div className="scrollytelling-step" id="scrollytelling-step-3">
-                      <span className="scrollytelling-step__emoji">🥤</span>
-                      <h3 className="scrollytelling-step__title">Cool Refreshment</h3>
-                      <p className="scrollytelling-step__desc">Sip on the refreshing flavor of our vibrant mocktails, from a cooling mint mojito to tropical pina coladas.</p>
-                    </div>
-                    <div className="scrollytelling-step" id="scrollytelling-step-4">
-                      <span className="scrollytelling-step__emoji">🍰</span>
-                      <h3 className="scrollytelling-step__title">Sweet Obsession</h3>
-                      <p className="scrollytelling-step__desc">Indulge in sweet perfection. Thick, rich milkshakes, loaded chocolate waffles, and freshly baked gooey brownies.</p>
-                    </div>
+                    {categories.map((cat, idx) => (
+                      <div 
+                        key={idx}
+                        className={`scrollytelling-step ${(!isMobile && idx === 0) || (isMobile && idx === activeCategory) ? 'active' : ''}`} 
+                        id={`scrollytelling-step-${idx}`}
+                      >
+                        <span className="scrollytelling-step__emoji">{cat.emoji}</span>
+                        <h3 className="scrollytelling-step__title">{cat.title}</h3>
+                        <p className="scrollytelling-step__desc">{cat.desc}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
                 <div className="scrollytelling-section__visual-side">
                   <div className="scrollytelling-section__image-container">
-                    <img 
-                      id="scrollytelling-img-0"
-                      src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1200&auto=format&fit=crop" 
-                      alt="Coffee" 
-                      className="scrollytelling-image active"
-                    />
-                    <img 
-                      id="scrollytelling-img-1"
-                      src="https://images.unsplash.com/photo-1692273212247-f5efb3fc9b87?q=80&w=1200&auto=format&fit=crop" 
-                      alt="Maggi" 
-                      className="scrollytelling-image"
-                    />
-                    <img 
-                      id="scrollytelling-img-2"
-                      src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop" 
-                      alt="Pizza" 
-                      className="scrollytelling-image"
-                    />
-                    <img 
-                      id="scrollytelling-img-3"
-                      src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=1200&auto=format&fit=crop" 
-                      alt="Mocktails" 
-                      className="scrollytelling-image"
-                    />
-                    <img 
-                      id="scrollytelling-img-4"
-                      src={pastries} 
-                      alt="Desserts" 
-                      className="scrollytelling-image"
-                    />
+                    {categories.map((cat, idx) => (
+                      <img 
+                        key={idx}
+                        id={`scrollytelling-img-${idx}`}
+                        src={cat.img} 
+                        alt={cat.title} 
+                        className={`scrollytelling-image ${(!isMobile && idx === 0) || (isMobile && idx === activeCategory) ? 'active' : ''}`}
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
